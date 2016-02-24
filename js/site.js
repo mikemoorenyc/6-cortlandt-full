@@ -27,13 +27,7 @@ function siteInit() {
     }
   }.orientation();
 
- /* orientationClass();
-  $(window).resize(function(){
-    myApp.ww = $(window).width(),
-    myApp.wh = $(window).height();
-    orientationClass();
-  });
-  */
+
 
   //theHistory();
 
@@ -52,30 +46,11 @@ function siteInit() {
 
 
 
-
-
-
-
   pageLoader();
 
   $('html').addClass('_page-loaded');
   console.log('scripts loaded');
 }
-
-
-
-
-/*
-
-function orientationClass() {
-  if (myApp.ww >= myApp.wh) {
-    $('html').addClass('_orientation-landscape').removeClass('_orientation-portrait');
-  } else {
-    $('html').removeClass('_orientation-landscape').addClass('_orientation-portrait');
-  }
-}
-
-*/
 
 //DON'T TOUCH
 
