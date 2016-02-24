@@ -7,7 +7,7 @@ function siteInit() {
     dt: 801,
     tab: 401,
     ts: 500,
-    orientation = function() {
+    orientation : function() {
       function decider(w,x) {
         if (w >= x) {
         $('html').addClass('_orientation-landscape').removeClass('_orientation-portrait');
@@ -15,13 +15,15 @@ function siteInit() {
          $('html').removeClass('_orientation-landscape').addClass('_orientation-portrait');
         }
       }
-      decider(this.parent.ww,this.parent.wh);
-      
+      //console.log(this);
+      decider(this.ww,this.wh);
+
       $(window).resize(function(){
-        this.parent.ww = $(window).width();
-        this.parent.wh = $(window).height();
-        decider(this.parent.ww,this.parent.wh);
+        this.ww = $(window).width();
+        this.wh = $(window).height();
+        decider(this.ww,this.wh);
       }.bind(this));
+
     }
   }.orientation();
 
@@ -38,6 +40,7 @@ function siteInit() {
 
   //CHECK IF CSS IS LOADED
   var thechecker = setInterval(function(){
+
     var ztest = $('#css-checker').css('height');
 
     if(ztest == '1px') {

@@ -1,12 +1,11 @@
-var buildDir = 'build-new';
+var buildDir = '6cortlandt-build';
 
 //GENERAL MODULES
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     changed = require('gulp-changed');
 //HTML MINIFIERS
-var htmlclean = require('gulp-htmlclean'),
-    minifyInline = require('gulp-minify-inline');
+var htmlclean = require('gulp-htmlclean');
 //CSS PROCESSING
 var sass = require('gulp-sass'),
     postcss = require('gulp-postcss'),
@@ -22,31 +21,46 @@ var postcssprocessors = [
 //JS PROCESSING
 var uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint');
-    
+
 //IMAGE PROCESSING
 var pngcrush = require('imagemin-pngcrush'),
     svgstore = require('gulp-svgstore'),
     imagemin = require('gulp-imagemin');
 
+//Generic sass Processor
+function sassProcessor(blob, dest) {
+  gulp.src(blob)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss(postcssprocessors))
+    .pipe(gulp.dest(dest));
+}
+//Generic js Processor
+function jsProcessor(blob, dest, newName) {
+  gulp.src(blob)
+    .pipe(uglify())
+    .on('error', console.error.bind(console))
+    .pipe(concat(newName))
+    .pipe(gulp.dest(dest));
+}
+//Generic html Processor
+function htmlProcessor(blob, dest) {
+  gulp.src(blob)
+    .pipe(changed(dest))
+    .pipe(htmlclean({}))
+    .pipe(gulp.dest(dest));
+}
+
+
+
 //SASS CSS TASK
 gulp.task('sass', function () {
-  gulp.src(['sass/main.scss', 'sass/expanded.scss','sass/ie-fixes.scss','sass/editor-styles.scss'])
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss(postprocessors))
-    .pipe(gulp.dest('../'+buildDir+'/css'));
+  sassProcessor(['sass/main.scss', 'sass/expanded.scss','sass/ie-fixes.scss','sass/editor-styles.scss'], '../'+buildDir+'/css');
 });
 
 //JS TASK
 gulp.task('js', function () {
-  gulp.src([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'])
-    .pipe(uglify())
-    .on('error', console.error.bind(console))
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('../'+buildDir+'/js'));
-  gulp.src('js/inline-load.js')
-    .pipe(uglify())
-    .on('error', console.error.bind(console))
-    .pipe(gulp.dest('../'+buildDir+'/js'));
+  jsProcessor([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'], '../'+buildDir+'/js', 'main.js');
+  jsProcessor('js/inline-load.js', '../'+buildDir+'/js', 'inline-load.js');
 });
 
 //JS LINTING
@@ -58,11 +72,7 @@ gulp.task('lint', function() {
 
 //HTML TASK
 gulp.task('templatecrush', function() {
-  gulp.src(['*.php','*.html','!custom-module-functions.php'])
-    .pipe(changed('../'+buildDir))
-    .pipe(minifyInline())
-    .pipe(htmlclean({}))
-    .pipe(gulp.dest('../'+buildDir));
+  htmlProcessor(['*.php','*.html','!custom-module-functions.php'], '../'+buildDir);
 });
 
 
