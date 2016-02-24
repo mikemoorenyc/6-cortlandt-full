@@ -1,13 +1,15 @@
 //PAGE LOADER FUNCTION
-function pageLoader() {
-  // BASE STUFF
+function pageLoader(newSlug) {
 
-  //NAV ACTIVE CLASSES
-//  $('nav ul li, nav ul li a').removeClass('__active');
-//  $('nav ul li.'+theSlug).addClass('__active');
-//  $('nav ul li.'+theSlug).find('a').addClass('__active');
+  $('nav#main-navigation a').removeClass('__active');
+  $('nav#main-navigation a[data-slug="'+newSlug+'"]').addClass('__active');
 
+  //SEND CURRENT STATE TO GOOGLE
+  var currentURL = window.location.href ;
 
+  if(typeof ga !=='undefined') {
+    ga('send', 'pageview', currentURL);
+  }
 
   //MAKE INTERNAL LINKS
   var siteURL = "http://" + top.location.host.toString();

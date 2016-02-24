@@ -15,7 +15,6 @@ function siteInit() {
          $('html').removeClass('_orientation-landscape').addClass('_orientation-portrait');
         }
       }
-      //console.log(this);
       decider(this.ww,this.wh);
 
       $(window).resize(function(){
@@ -27,9 +26,15 @@ function siteInit() {
     }
   }.orientation();
 
+  //PROGRAMATICALLY Attach Fastclick
+  if(Modernizr.touchevents) {
+    $(function() {
+      FastClick.attach(document.body);
+    });
+  }
 
 
-  //theHistory();
+  theHistory();
 
 
   //CHECK IF CSS IS LOADED
@@ -45,8 +50,8 @@ function siteInit() {
   }, 10);
 
 
-
-  pageLoader();
+  var firstSlug = $('#main-content-container').data('slug');
+  pageLoader(firstSlug);
 
   $('html').addClass('_page-loaded');
   console.log('scripts loaded');

@@ -3,6 +3,8 @@ function theHistory() {
 
   var $document = $(document);
 
+  var titleState = '';
+
   if (!History.enabled) {
 
       return false;
@@ -43,11 +45,12 @@ function theHistory() {
 
   $document.ready(function () {
       $document.on('click', 'a.internal', function (event) {
+
         if($('html').hasClass('__page-loading') == true) {
           return false;
         }
         $('html').removeClass('__menu-opened').addClass('__menu-closed');
-
+        titleState = $('title').last().html();
           if (event.which == 2 || event.ctrlKey || event.metaKey) {
               return true;
           }
@@ -62,7 +65,6 @@ function theHistory() {
   $(window).on('statechange', function () {
 
       //INITIATE LOADING ANIMATION
-
       $('html').addClass("__page-loading");
 
       //$('html').addClass('__mobile-nav-closed').removeClass('__mobile-nav-opened');
@@ -75,19 +77,15 @@ function theHistory() {
 
 
 
-/*
-      $('.page-content').velocity({opacity:0}, {
-        duration: ts*1.5,
-        complete: function(){
-          runner();
-        }
-      });
-*/
       var thenext = History.getState().url,
        therel = thenext.replace(root, '/');
 
 
-      $('title').last().html(pageTitle);
+      $('title').last().html(titleState);
+      $('#main-content-container').animate({opacity: 0}, 250, function(){
+        $("body, html").scrollTop(0);
+        runner();
+      });
 
 
 //      $("html").velocity("scroll", { offset: '0px', mobileHA: false});
@@ -114,7 +112,6 @@ function theHistory() {
 
             if (response.title.length) {
                 $('title').last().html(response.title);
-                $('meta[name="description"]').attr('content', response.description);
             }
 
             //NEW LOAD
@@ -125,10 +122,13 @@ function theHistory() {
 
             //var pinAssemblage = $(newStuff).find('#top-header');
 
-            $('.page-content').empty();
-            $('.page-content').html($(newStuff).find('.page-content').html());
+            $('#main-content-container').empty();
+            $('#main-content-container').html($(newStuff).html());
+            $('#main-content-container').attr('data-slug', newSlug);
+            $("body, html").scrollTop(0);
+            $('#main-content-container').animate({opacity:1}, 250);
             //$('.page-content').velocity({opacity:1}, {duration: ts*1.5});
-            pageLoader(newSlug, pinAssemblage);
+            pageLoader(newSlug);
 
             $("html").removeClass('__page-loading');
 

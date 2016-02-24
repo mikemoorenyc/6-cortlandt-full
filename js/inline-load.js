@@ -1,4 +1,3 @@
-
 //GLOBAL JAVASCRIPT VARIABLES TAKEN FROM PHP
 var phpvars_siteDir = '***REPLACEWITHTHEMEDIRECTORY***',
     phpvars_timestamp = '***TIMESTAMP***';
@@ -10,9 +9,9 @@ function loadCSS(e,t,n){"use strict";function o(){var t;for(var i=0;i<s.length;i
 
 loadCSS(cssExpand);
 
+//$.getScript(phpvars_siteDir+"/js/main.js?v="+phpvars_timestamp);
 
-
-
+/*
 function loadScript(url, callback) {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -37,7 +36,20 @@ function loadScript(url, callback) {
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
 }
 // How to use it
+
 loadScript("//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js", function () {
     console.log('jquery loaded');
     $.getScript(phpvars_siteDir+"/js/main.js?v="+phpvars_timestamp);
 });
+*/
+
+
+//SET UP ANALYTICS
+/*
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-69589906-1', 'auto');
+*/
