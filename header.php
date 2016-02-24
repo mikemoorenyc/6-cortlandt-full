@@ -17,6 +17,7 @@ $siteTitle = get_bloginfo('name');
 //DECLARE THE PAGE EXCERPT
 global $siteDesc;
 $siteDesc = get_bloginfo('description');
+
 ?>
 <!DOCTYPE html>
 <html lang="en" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
