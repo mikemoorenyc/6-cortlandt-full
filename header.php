@@ -84,11 +84,12 @@ else: ?>
 </head>
 
 <body id="top">
+
 <div id="css-checker"></div>
 
 <header>
 
 <?php include 'module-navigation.php';?>
 </header>
-<div id="ajax-catcher">
+  <div id="ajax-catcher">
 <div id="main-content-container" data-slug="<?php echo $slug;?>">

@@ -37,6 +37,7 @@ function theHistory() {
           description = $.trim(find_all($head, 'meta[name="description"]').last().attr('content'));
 
       return {
+          'pagesub' : $.trim(find_all($body, '#page-sub').first().html()),
           'title': title,
           '$content': $content,
           'description': description
@@ -49,7 +50,7 @@ function theHistory() {
         if($('html').hasClass('__page-loading') == true) {
           return false;
         }
-        $('html').removeClass('__menu-opened').addClass('__menu-closed');
+
         titleState = $('title').last().html();
           if (event.which == 2 || event.ctrlKey || event.metaKey) {
               return true;
@@ -121,7 +122,7 @@ function theHistory() {
             var newSlug = $(newStuff).data('slug');
 
             //var pinAssemblage = $(newStuff).find('#top-header');
-
+            $('#page-sub').html(response.pagesub);
             $('#main-content-container').empty();
             $('#main-content-container').html($(newStuff).html());
             $('#main-content-container').attr('data-slug', newSlug);
