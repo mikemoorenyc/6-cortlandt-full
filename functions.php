@@ -18,7 +18,7 @@ add_theme_support('post-thumbnails');
 add_action( 'admin_init', 'my_theme_add_editor_styles' );
 function my_theme_add_editor_styles() {
     add_editor_style( 'css/editor-styles.css' );
-}  
+}
 
 // DIRECTORY REPLACER
 
@@ -45,4 +45,32 @@ function content_cleaner($content) {
     return $content;
 }
 // add_filter('the_content', 'content_cleaner',20);
+
+
+
+//ADD FOOTER COPY SETTING
+add_filter('admin_init', 'footer_copy_setting');
+
+function footer_copy_setting()
+{
+    register_setting('general', 'footer_copy', 'esc_attr');
+    add_settings_field('footer_copy', '<label for="footer_copy">'.__('Footer Copy' , 'footer_copy' ).'</label>' , 'footer_copy_editor', 'general');
+}
+
+function footer_copy_editor()
+{
+    $value = get_option( 'footer_copy', '' );
+
+    wp_editor( htmlspecialchars_decode($value), 'footer_copy', $settings = array(
+
+    ) );
+    ?>
+
+
+</script>
+    <?php
+}
+
+
+include 'contact-constructor.php';
 ?>

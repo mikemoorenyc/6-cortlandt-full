@@ -71,22 +71,22 @@ else: ?>
 <meta property="og:site_name" content="<?php echo $siteTitle;?>" />
 <meta property="og:title" content="<?php echo $pageTitle;?> | <?php echo $siteTitle;?>" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="<?php echo $homeURL;?>" />
+<meta property="og:url" content="<?php echo get_permalink($post);?>" />
 <meta property="og:image" content="<?php echo $siteDir;?>/assets/imgs/social-poster.jpg" />
 <meta property="og:description" content="<?php echo $siteDesc;?>" />
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="<?php echo $pageTitle;?> | <?php echo $siteTitle;?>">
-<meta name="twitter:description" content="<?php echo get_bloginfo('description');?>">
+<meta name="twitter:description" content="<?php echo $siteDesc;?>">
 <meta name="twitter:image" content="<?php echo $siteDir;?>/assets/imgs/social-poster.jpg">
 
-
+<link rel="canonical" href="<?php echo get_permalink($post);?>" />
 </head>
 
 <body id="top">
 
 <div id="css-checker"></div>
-
+<div id="app_wrap">
 <header>
 
 <?php include 'module-navigation.php';?>
