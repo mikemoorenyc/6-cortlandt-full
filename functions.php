@@ -3,7 +3,7 @@ add_theme_support( 'menus' );
 
 //$siteDir = '/wp-content/themes/w25th-build';
 add_post_type_support('page', 'excerpt');
-
+add_image_size ( 'fake-full', 2000 , 2000 , false ) ;
 
 // Custom functions
 

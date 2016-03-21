@@ -68,17 +68,32 @@ else: ?>
 
 <?php wp_site_icon();?>
 
+
+
+<?php
+//GET THE SOCIAL IMG
+$socialImg = '';
+$headerGal = get_post_meta( $post->ID, 'top-image-gallery', true );
+if(!empty($headerGal)) {
+  $theImg = $headerGal[0];
+  $socialImg = wp_get_attachment_image_src($theImg['image'], 'fake-full')[0];
+} else {
+  //GET THE DEFAULT SOCIAL IMG
+  $socialImg = $siteDir.'/assets/imgs/social-poster.jpg';
+}
+ ?>
+
 <meta property="og:site_name" content="<?php echo $siteTitle;?>" />
 <meta property="og:title" content="<?php echo $pageTitle;?> | <?php echo $siteTitle;?>" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?php echo get_permalink($post);?>" />
-<meta property="og:image" content="<?php echo $siteDir;?>/assets/imgs/social-poster.jpg" />
+<meta property="og:image" content="<?php echo $socialImg;?>" />
 <meta property="og:description" content="<?php echo $siteDesc;?>" />
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="<?php echo $pageTitle;?> | <?php echo $siteTitle;?>">
 <meta name="twitter:description" content="<?php echo $siteDesc;?>">
-<meta name="twitter:image" content="<?php echo $siteDir;?>/assets/imgs/social-poster.jpg">
+<meta name="twitter:image" content="<?php echo $socialImg;?>">
 
 <link rel="canonical" href="<?php echo get_permalink($post);?>" />
 </head>
