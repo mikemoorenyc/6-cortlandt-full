@@ -119,3 +119,16 @@ blockquote {
     }
   }
 }
+
+
+//STICKY FOOTER
+#app_wrap {
+  position:relative;
+  min-height:100vh;
+}
+footer {
+  position:absolute;
+  left: 0;
+  bottom: 0;
+  width:100%;
+}

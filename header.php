@@ -68,7 +68,22 @@ else: ?>
 
 <?php wp_site_icon();?>
 
+<?php
+// DECLARE THE NAV ITEMS
+$navItems = array();
+$pages = get_pages(array(
+  'sort_column' => 'menu_order'
+));
 
+foreach($pages as $p) {
+  array_push($navItems,array(
+    'title' => $p->post_title,
+    'url' => get_permalink($p),
+    'class' => $p->post_name
+  ));
+}
+
+?>
 
 <?php
 //GET THE SOCIAL IMG
@@ -108,3 +123,58 @@ if(!empty($headerGal)) {
 </header>
   <div id="ajax-catcher">
 <div id="main-content-container" data-slug="<?php echo $slug;?>">
+  <?php
+    //HeaderGal
+    $headerGal = get_post_meta( $post->ID, 'top-image-gallery', true );
+    if(!empty($headerGal)) {
+      ?>
+      <div id="header-gallery" data-section='<?php echo $slug;?>'>
+      <div class="container">
+        <?php
+        foreach($headerGal as $hg) {
+          $bigimg = wp_get_attachment_image_src($hg['image'], 'fake-full');
+          $smimg = wp_get_attachment_image_src($hg['image'], 'medium');
+          $alt = get_the_title($hg['image']);
+          if(!empty($hg['caption'])) {
+            $alt = $hg['caption'];
+          }
+          ?>
+          <div class="slide">
+            <div class="img-holder">
+
+              <img src="<?php echo $bigimg[0];?>"  alt="<?php echo $alt;?>" srcset="<?php echo $bigimg[0];?> <?php echo $bigimg[1];?>w, <?php echo $smimg[0];?> <?php echo $smimg[1];?>w" sizes="100vw">
+            <!--  <picture>
+                  <source srcset="<?php echo $smimg[0];?>" media="(max-width: 800px)">
+                  <source srcset="<?php echo $bigimg[0];?>">
+                  <img src="<?php echo $bigimg[0];?>" srcset="<?php echo $bigimg[0];?>" alt="My default image">
+              </picture>-->
+            </div>
+
+            <?php
+            if(!empty($hg['caption'])) {
+              ?>
+              <div class="caption">
+                <?php echo $hg['caption'];?>
+              </div>
+              <?php
+            }
+
+            ?>
+
+          </div>
+          <?php
+        }
+
+
+        ?>
+
+      </div>
+      </div>
+
+
+      <?php
+    }
+
+
+
+    ?>

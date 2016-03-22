@@ -1,6 +1,8 @@
 //PAGE LOADER FUNCTION
 function pageLoader(newSlug) {
 
+  headGal();
+
   $('nav#main-navigation a').removeClass('__active');
   $('nav#main-navigation a[data-slug="'+newSlug+'"]').addClass('__active');
 
@@ -21,6 +23,8 @@ function pageLoader(newSlug) {
       $(this).removeClass('internal');
     }
   });
+
+
 
   //RUN PAGE SPECIFIC FUNCTIONS
 
