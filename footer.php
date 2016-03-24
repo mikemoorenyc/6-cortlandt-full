@@ -46,7 +46,7 @@
 </div><!--main-content-container-->
 </div><!-- ajax-catcher-->
 
-<footer>
+<div id="footer">
   <div class="inner clearfix">
     <div class="logo">
 
@@ -63,7 +63,7 @@
       <?php echo htmlspecialchars_decode(get_option('footer_copy',''));?>
     </div>
   </div>
-</footer>
+</div>
 </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script id="inline-scripts"><?php $inlinejs = file_get_contents($siteDir.'/js/inline-load.js'); dirReplacer($inlinejs);?></script>

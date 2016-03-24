@@ -1,3 +1,9 @@
+<div id="header">
+  <h1 class="logo">
+    <a href="<?php echo $homeURL;?>/">
+    Six Cortlandt Alley
+  </a>
+  </h1>
 <nav role="navigation" id="main-navigation">
 
 <?php
@@ -34,4 +40,5 @@ foreach($navItems as $n) {
   ?>
 
 
+</div>
 </div>
