@@ -48,13 +48,13 @@ function press_ui_content() {
   }
   ?>
   <div id="required-field-list-template" style="display:none;" class="postbox ">
-    <h2 class="hndle ui-sortable-handle"><span>Please make sure you set the following:</span></h2>
+    <h2 class="hndle ui-sortable-handle"><span>Make sure you filled out the following fields:</span></h2>
     <ul id="required-field-list">
       <li class="title">
         Title
       </li>
       <li class="excerpt">
-        Excerpt
+        Press Excerpt
 
       </li>
       <li class="read">Read More Link</li>
@@ -90,7 +90,7 @@ function press_ui_content() {
       $('#required-field-list-template li').addClass("success");
       $('#publishing-action input.button').removeAttr('disabled');
 
-    
+
       //CHECK TITLE
       var title = $('input#title').val();
       if(title == '') {
