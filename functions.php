@@ -13,6 +13,14 @@ remove_action('wp_head', 'wp_generator');// Removes the WordPress version as a l
 add_theme_support('post-thumbnails');
 
 
+//USE CUSTOM THEME TEMPLATE
+
+
+
+
+
+
+
 
 
 add_action( 'admin_init', 'my_theme_add_editor_styles' );
