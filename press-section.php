@@ -48,7 +48,7 @@ function press_ui_content() {
   }
   ?>
   <div id="required-field-list-template" style="display:none;" class="postbox ">
-    <h2 class="hndle ui-sortable-handle"><span>Make sure you filled out the following fields:</span></h2>
+    <h2 class="hndle ui-sortable-handle"><span>Make sure you fill out the following fields:</span></h2>
     <ul id="required-field-list">
       <li class="title">
         Title

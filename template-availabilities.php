@@ -6,7 +6,7 @@
 
 
 <?php include 'header.php'; ?>
-<table width="100%" align="center">
+<table >
 <thead>
   <tr>
     <td class="name">
