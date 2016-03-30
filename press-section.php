@@ -46,9 +46,15 @@ function press_ui_content() {
   if($post->post_type !== 'press') {
     return;
   }
+  $currentAction = get_current_screen()->action;
+  if($currentAction == 'add') {
+    $actionText = 'publishing';
+  } else {
+    $actionText = 'updating';
+  }
   ?>
   <div id="required-field-list-template" style="display:none;" class="postbox ">
-    <h2 class="hndle ui-sortable-handle"><span>Make sure you fill out the following fields:</span></h2>
+    <h2 class="hndle ui-sortable-handle"><span>Complete the following content before <?php echo $actionText;?></span></h2>
     <ul id="required-field-list">
       <li class="title">
         Title
@@ -67,7 +73,8 @@ function press_ui_content() {
   jQuery(document).ready(function($){
     $('#submitdiv').after($('#required-field-list-template'));
     $('#required-field-list-template').show();
-
+    $('textarea[name="press-excerpt_copy"]').attr('maxlength', 150);
+    $('textarea[name="press-excerpt_copy"]').after('<div class="info">Max length: 150 characters</div>');
     var docType = $('input[name=press-read-more-link_link-type]:checked').val();
     docSwitcher();
     $('input[name=press-read-more-link_link-type]').on('change',function(){
