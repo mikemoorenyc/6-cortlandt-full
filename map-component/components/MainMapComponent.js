@@ -25,7 +25,8 @@ var MainMapComponent = React.createClass({
     }.bind(this),500)
   },
   draggerEnd: function() {
-    this.setState({mousedown:false});
+    var dragState = this.state.dragging;
+    this.setState({mousedown:false, dragging:false});
   },
   render: function() {
 
