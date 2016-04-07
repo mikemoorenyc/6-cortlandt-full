@@ -50,7 +50,7 @@ add_action('admin_head', 'userhide');
 function userhide() {
   ?>
 <style>
-#wpfooter {
+#wpfooter, #ninja_forms_selector, .nf-insert-form {
   display: none !important;
 
 }
