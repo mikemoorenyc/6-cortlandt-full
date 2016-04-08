@@ -23,11 +23,11 @@ var PointForm = React.createClass({
   },
   getInitialState: function() {
 
-
+//console.log(this.props.coor);
     return {
       title: this.props.title,
       cat: this.props.cat,
-
+      coor: this.props.coor,
       catName: this.getCatName(this.props.cat)
     }
   },
@@ -42,6 +42,7 @@ var PointForm = React.createClass({
         id: this.props.id,
         title: this.props.title,
         cat: this.props.cat,
+        coor: this.props.coor,
         editing: false
       });
     }
@@ -56,6 +57,9 @@ var PointForm = React.createClass({
   updateCat: function(e) {
     this.setState({cat: e.target.value, catName: this.getCatName(e.target.value)});
   },
+  updateCoor: function(coor) {
+    this.setState({coor:coor})
+  },
   publishClick: function(e) {
 
     e.preventDefault();
@@ -63,7 +67,7 @@ var PointForm = React.createClass({
       id: this.props.id,
       title: this.state.title,
       cat: this.state.cat,
-
+      coor:this.state.coor,
       editing: false,
       newCat: false
     });
@@ -79,7 +83,7 @@ var PointForm = React.createClass({
       publishCopy = 'Update';
       deleter = <a href="#" className="delete" onClick={this.deleteClick}>Delete</a>;
     }
-
+  //  console.log(this.props.coor);
     return (
       <div className="point-form">
         <div className="point-form-header clearfix">
@@ -99,7 +103,10 @@ var PointForm = React.createClass({
           <br className="clear" />
 
         </div>
-        <MapWindow />
+        <MapWindow
+        updateCoor={this.updateCoor}
+        pointCoor ={this.props.coor}
+        />
         <div className="FormFooter">
           {deleter}
           <button className="cancel-button button button-secondary " onClick={this.cancelClick}>Cancel</button>

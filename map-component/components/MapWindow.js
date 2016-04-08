@@ -1,12 +1,5 @@
  var MapWindow = React.createClass({
    getInitialState: function() {
-     var pointcoor = this.props.pointcoor;
-     if(!this.props.pointcoor) {
-       var pointcoor = {
-         l: .5,
-         t: .5
-       }
-     }
      return {
        windowDim: {
          left:0,
@@ -20,7 +13,7 @@
          width:0,
          height:0
        },
-       pointcoor: pointcoor
+       pointcoor: this.props.pointCoor
      }
    },
    getWindowSize: function() {
@@ -55,10 +48,14 @@
    pointcoorUpdate: function(x,y) {
      this.setState({
        pointcoor: {
-         l: (x - this.state.imgDim.left) / this.state.imgDim.width,
-         t: (y - this.state.imgDim.top) / this.state.imgDim.height
+         l: x,
+         t: y
        }
-     })
+     });
+     this.props.updateCoor({x:x,y:y});
+   },
+   zoomIncrease: function() {
+     this.setState({zoom:2});
    },
   render: function() {
     return (
@@ -67,7 +64,10 @@
         paddingTop: ((INITIALH/INITIALW)*100)+'%'
       }}
       >
-        <img className="map-image" ref="mapImage" src={IMGSRC} />
+        <img className="map-image"
+
+
+        ref="mapImage" src={IMGSRC} />
         <div className="map-overlay"
 
           style={{
@@ -78,6 +78,7 @@
           }}
         >
         <MapPoint
+        overlayDim={{width:this.state.imgDim.width,height:this.state.imgDim.height}}
         pointcoor={this.state.pointcoor}
         pointUpdate={this.pointcoorUpdate}
 
@@ -85,6 +86,7 @@
 
 
         </div>
+        <div className="zoom-increase" onClick={this.zoomIncrease}>Increase</div>
 
       </div>
     )

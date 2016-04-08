@@ -1,22 +1,23 @@
 var MapPoint = React.createClass({
   getInitialState: function() {
     return {
-      pointCoor: this.props.pointcoor,
-      dragObj: {}
+      pointCoor: this.props.pointcoor
     }
   },
   componentDidMount: function(){
-    var $draggable = $(this.refs.point).draggabilly({
-  // options...
+    APP.dragger = $(this.refs.point).draggabilly({
+      containment:true
     });
-    
-    $draggable.on( 'dragEnd', function( event, pointer ) {
-      this.props.pointUpdate(pointer.pageX,pointer.pageY);
+    APP.dragger.on( 'dragEnd', function( event, pointer ) {
+      var dragData = $(APP.dragger).data('draggabilly');
+      var xChange = (dragData.dragPoint.x / this.props.overlayDim.width)+this.props.pointcoor.x;
+      var yChange = (dragData.dragPoint.y / this.props.overlayDim.height)+this.props.pointcoor.y;
+      this.props.pointUpdate(xChange,yChange);
     }.bind(this));
   },
   componentWillUnmount: function() {
-    $draggable.off( 'dragEnd');
-    $draggable.draggabilly('destroy');
+    APP.dragger.off( 'dragEnd');
+    APP.dragger.draggabilly('destroy');
   },
   render: function(){
 
@@ -24,8 +25,8 @@ var MapPoint = React.createClass({
       <div ref="point" className="map-point"
 
         style={{
-          left: (this.props.pointcoor.l * 100)+'%',
-          top: (this.props.pointcoor.t * 100)+'%',
+          left: (this.props.pointcoor.x * 100)+'%',
+          top: (this.props.pointcoor.y * 100)+'%',
         }}
       >
 
