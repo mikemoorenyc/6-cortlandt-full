@@ -8,15 +8,35 @@
        }
      }
      return {
-       windowDim: {},
-       imgDim: {},
+       windowDim: {
+         left:0,
+         top:0,
+         width:0,
+         height:0
+       },
+       imgDim: {
+         left:0,
+         top:0,
+         width:0,
+         height:0
+       },
        pointcoor: pointcoor
      }
    },
    getWindowSize: function() {
      this.setState({
-       windowDim: this.refs.mapWindow.getBoundingClientRect(),
-       imgDim: this.refs.mapImage.getBoundingClientRect()
+       windowDim: {
+         width: $(this.refs.mapWindow).width(),
+         height: $(this.refs.mapWindow).height(),
+         left: $(this.refs.mapWindow).offset().left,
+         top: $(this.refs.mapWindow).offset().top
+       },
+       imgDim: {
+         width: $(this.refs.mapImage).width(),
+         height: $(this.refs.mapImage).height(),
+         left: $(this.refs.mapImage).offset().left,
+         top: $(this.refs.mapImage).offset().top
+       }
      })
    },
    componentDidMount: function() {
@@ -30,18 +50,15 @@
    },
    overlayClicked: function(e) {
      e.preventDefault();
-
-     var boxTop = this.state.imgDim.top+$(window).scrollTop();
-     console.log(e.pageY);
-
+     this.pointcoorUpdate(e.pageX,e.pageY);
+   },
+   pointcoorUpdate: function(x,y) {
      this.setState({
        pointcoor: {
-         l: (e.pageX - this.state.imgDim.left) / this.state.imgDim.width,
-         t: (e.pageY - (boxTop)) / this.state.imgDim.height
+         l: (x - this.state.imgDim.left) / this.state.imgDim.width,
+         t: (y - this.state.imgDim.top) / this.state.imgDim.height
        }
      })
-
-
    },
   render: function() {
     return (
@@ -52,7 +69,7 @@
       >
         <img className="map-image" ref="mapImage" src={IMGSRC} />
         <div className="map-overlay"
-          onClick={this.overlayClicked}
+
           style={{
             width: this.state.imgDim.width,
             height: this.state.imgDim.height,
@@ -62,7 +79,7 @@
         >
         <MapPoint
         pointcoor={this.state.pointcoor}
-
+        pointUpdate={this.pointcoorUpdate}
 
         />
 

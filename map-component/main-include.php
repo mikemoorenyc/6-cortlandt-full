@@ -27,10 +27,11 @@ function add_react_script($hook) {
       return;
   }
 
-  wp_enqueue_script( 'react_main', 'https://fb.me/react-0.14.8.min.js' );
-  wp_enqueue_script( 'react_dom', 'https://fb.me/react-dom-0.14.8.min.js' );
+  wp_enqueue_script( 'react_main', 'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.8/react.js' );
+  wp_enqueue_script( 'react_dom', 'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.8/react-dom.js' );
 
   wp_enqueue_script( 'sortable_list_plugin', 'https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js' );
+  wp_enqueue_script( 'draggable_plugin', 'https://npmcdn.com/draggabilly@2.1/dist/draggabilly.pkgd.min.js' );
   wp_enqueue_style('main_style', get_bloginfo('template_url').'/map-component/main.css');
 
 
