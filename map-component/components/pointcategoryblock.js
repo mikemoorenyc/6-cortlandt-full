@@ -96,12 +96,12 @@ render: function() {
 
 
     if(point.editing) {
-      
+
       mainCat = 'pointItem currently-editing item-'+this.props.id;
       catForm = <PointForm title={point.title} coor={point.coor} newPoint={point.newPoint} cat={point.cat} id={point.id} savePoint={this.props.savePoint} deletePoint={this.props.deletePoint} categories={this.props.categories}/>
     }
     if(point.title && !point.editing) {
-      saveCat = <PointItem color={this.props.getCatInfo(this.props.id, 'color')} savePoint={this.props.savePoint} deletePoint={this.props.deletePoint} id={point.id} cat={point.cat} lat={point.lat} lng={point.lng} title={point.title} canDrag={draggable}/>
+      saveCat = <PointItem savePoint={this.props.savePoint} deletePoint={this.props.deletePoint} id={point.id} cat={point.cat}  coor={point.coor} title={point.title} canDrag={draggable}/>
     }
     return (
       <div className={mainCat} key={point.id}>

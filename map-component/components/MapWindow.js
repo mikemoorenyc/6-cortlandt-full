@@ -1,5 +1,13 @@
  var MapWindow = React.createClass({
+
    getInitialState: function() {
+     var coordinates = this.props.pointCoor;
+     if(!coordinates) {
+       coordinates = {
+         x: .5,
+         y: .5
+       }
+     }
      return {
        windowDim: {
          left:0,
@@ -13,7 +21,7 @@
          width:0,
          height:0
        },
-       pointcoor: this.props.pointCoor
+       pointcoor: coordinates  
      }
    },
    getWindowSize: function() {
