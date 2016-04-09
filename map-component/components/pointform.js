@@ -58,6 +58,7 @@ var PointForm = React.createClass({
     this.setState({cat: e.target.value, catName: this.getCatName(e.target.value)});
   },
   updateCoor: function(coor) {
+
     this.setState({coor:coor})
   },
   publishClick: function(e) {
@@ -78,11 +79,13 @@ var PointForm = React.createClass({
     if(this.state.title) {
       disabled = false;
     }
+
     var publishCopy = 'Save';
     if(!this.props.newPoint) {
       publishCopy = 'Update';
       deleter = <a href="#" className="delete" onClick={this.deleteClick}>Delete</a>;
     }
+
   //  console.log(this.props.coor);
     return (
       <div className="point-form">
@@ -105,7 +108,7 @@ var PointForm = React.createClass({
         </div>
         <MapWindow
         updateCoor={this.updateCoor}
-        pointCoor ={this.props.coor}
+        pointCoor ={this.state.coor}
         />
         <div className="FormFooter">
           {deleter}

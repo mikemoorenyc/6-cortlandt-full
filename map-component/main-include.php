@@ -45,7 +45,7 @@ function location_bottom_scripts() {
     return;
   }
   ?>
-
+  <?php include 'location-bottom.php';?>
   <script src="<?php echo get_bloginfo('template_url');?>/map-component/plain.js"></script>
 
   <script src="<?php echo get_bloginfo('template_url');?>/map-component/build.js"></script>

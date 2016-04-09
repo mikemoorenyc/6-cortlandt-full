@@ -9,63 +9,117 @@
        }
      }
      return {
+       aspect: INITIALH/INITIALW,
        windowDim: {
-         left:0,
-         top:0,
          width:0,
          height:0
        },
-       imgDim: {
-         left:0,
-         top:0,
-         width:0,
-         height:0
+       zoom: 1,
+       overlayPos: {
+         weightX:.5,
+         weightY: .5,
+         left: 0,
+         top: 0
        },
-       pointcoor: coordinates  
+       pointcoor: coordinates,
+       dragging:false,
+       mousePos: {}
      }
    },
    getWindowSize: function() {
      this.setState({
        windowDim: {
          width: $(this.refs.mapWindow).width(),
-         height: $(this.refs.mapWindow).height(),
-         left: $(this.refs.mapWindow).offset().left,
-         top: $(this.refs.mapWindow).offset().top
-       },
-       imgDim: {
-         width: $(this.refs.mapImage).width(),
-         height: $(this.refs.mapImage).height(),
-         left: $(this.refs.mapImage).offset().left,
-         top: $(this.refs.mapImage).offset().top
+         height: $(this.refs.mapWindow).width() * this.state.aspect
        }
      })
    },
    componentDidMount: function() {
      $(window).on('resize',function(){
        this.getWindowSize();
+       this.setState({
+         zoom:1,
+         overlayPos: {
+           weightX:.5,
+           weightY: .5,
+           left: 0,
+           top: 0
+         }
+       })
      }.bind(this));
      this.getWindowSize();
    },
    componentWillUnmount: function() {
      $(window).off('resize');
    },
-   overlayClicked: function(e) {
-     e.preventDefault();
-     this.pointcoorUpdate(e.pageX,e.pageY);
-   },
    pointcoorUpdate: function(x,y) {
      this.setState({
        pointcoor: {
-         l: x,
-         t: y
+         x: x,
+         y: y
        }
      });
      this.props.updateCoor({x:x,y:y});
    },
    zoomIncrease: function() {
-     this.setState({zoom:2});
+     this.setState({zoom:this.state.zoom+.2});
+   },
+   zoomDecrease: function() {
+     this.setState({zoom:this.state.zoom-.2});
+   },
+   mDown: function(e) {
+     e.stopPropagation();
+     this.setState({
+       dragging:true,
+       mousePos: {
+         x: e.pageX,
+         y: e.pageY
+       }
+     })
+   },
+   mUp: function(e) {
+     this.setState({dragging:false})
+   },
+   mMove: function(e) {
+     if(!this.state.dragging) {
+       return false;
+     }
+     this.positionFinder(e);
+
+     this.setState({
+       mousePos: {
+         x: e.pageX,
+         y: e.pageY
+       }
+     })
+
+
+   },
+   positionFinder: function(event) {
+     var xDif = event.clientX - this.state.mousePos.x,
+          yDif = event.clientY - this.state.mousePos.y,
+          newPosX = imgX + xDif,
+          newPosY = imgY + yDif;
    },
   render: function() {
+
+    var zoomin,
+        zoomout;
+    if(this.state.zoom <=2) {
+      zoomin= <div className="zoom-increase" onClick={this.zoomIncrease}>Increase</div>
+
+    }
+    if(this.state.zoom >1) {
+      zoomout=<div className="zoom-decrease" onClick={this.zoomDecrease}>Decrease</div>
+    }
+    var xDif = ((this.state.windowDim.width * this.state.zoom) - this.state.windowDim.width);
+    var yDif = ((this.state.windowDim.height* this.state.zoom) - this.state.windowDim.height);
+    var mapDim = {
+      width: this.state.windowDim.width * this.state.zoom,
+      height: this.state.windowDim.height * this.state.zoom,
+      left: -(xDif*this.state.overlayPos.x)+'px',
+      top: -(yDif*this.state.overlayPos.y)+'px'
+    }
     return (
       <div className="map-window" ref="mapWindow"
       style={{
@@ -73,20 +127,17 @@
       }}
       >
         <img className="map-image"
-
+        style={mapDim}
 
         ref="mapImage" src={IMGSRC} />
         <div className="map-overlay"
-
-          style={{
-            width: this.state.imgDim.width,
-            height: this.state.imgDim.height,
-            left: this.state.imgDim.left - this.state.windowDim.left,
-            top: this.state.imgDim.top - this.state.windowDim.top
-          }}
+          onMouseDown={this.mDown}
+          onMouseUp={this.mUp}
+          onMouseMove={this.mMove}
+          style={mapDim}
         >
         <MapPoint
-        overlayDim={{width:this.state.imgDim.width,height:this.state.imgDim.height}}
+        overlayDim={mapDim}
         pointcoor={this.state.pointcoor}
         pointUpdate={this.pointcoorUpdate}
 
@@ -94,7 +145,12 @@
 
 
         </div>
-        <div className="zoom-increase" onClick={this.zoomIncrease}>Increase</div>
+
+        <div className="zoom-controls">
+          {zoomin}
+          {zoomout}
+        </div>
+
 
       </div>
     )
