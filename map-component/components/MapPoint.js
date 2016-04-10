@@ -4,13 +4,15 @@ var MapPoint = React.createClass({
       pointCoor: this.props.pointcoor
     }
   },
+  dragger: {},
   componentDidMount: function(){
-    this.setState()
-    APP.dragger = $(this.refs.point).draggabilly({
+
+    this.dragger = $(this.refs.point).draggabilly({
       containment:true
     });
-    APP.dragger.on( 'dragEnd', function( event, pointer ) {
-      var dragData = $(APP.dragger).data('draggabilly');
+    this.dragger.on( 'dragEnd', function( event, pointer ) {
+
+      var dragData = $(this.dragger).data('draggabilly');
       //console.log(dragData)
       //console.log(this.props.pointcoor.x);
       //console.log(dragData.dragPoint.x /this.props.overlayDim.width + this.props.pointcoor.x);
@@ -20,8 +22,8 @@ var MapPoint = React.createClass({
     }.bind(this));
   },
   componentWillUnmount: function() {
-    APP.dragger.off( 'dragEnd');
-    APP.dragger.draggabilly('destroy');
+    this.dragger.off( 'dragEnd');
+    this.dragger.draggabilly('destroy');
   },
   stopProp: function(e) {
     e.stopPropagation();

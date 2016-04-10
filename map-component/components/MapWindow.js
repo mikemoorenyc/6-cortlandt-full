@@ -98,7 +98,7 @@
 
    },
    positionFinder: function(nX,nY,pX,pY) {
-
+     
      var  oX = parseFloat($(this.refs.mapOverlay).css('left')),
           oy = parseFloat($(this.refs.mapOverlay).css('top')),
           oW = $(this.refs.mapOverlay).width(),
