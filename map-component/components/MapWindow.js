@@ -14,12 +14,12 @@
          width:0,
          height:0
        },
-       zoom: 1,
+       zoom: 1.6,
        overlayPos: {
          weightX:.5,
          weightY: .5,
-         left: 0,
-         top: 0
+         x: 0,
+         y: 0
        },
        pointcoor: coordinates,
        dragging:false,
@@ -27,10 +27,15 @@
      }
    },
    getWindowSize: function() {
+     var height = $(this.refs.mapWindow).width() * this.state.aspect
      this.setState({
        windowDim: {
          width: $(this.refs.mapWindow).width(),
-         height: $(this.refs.mapWindow).width() * this.state.aspect
+         height: height
+       },
+       overlayPos: {
+         x: ($(this.refs.mapWindow).width() - ($(this.refs.mapWindow).width()*this.state.zoom)) /2,
+         y: (height- (height*this.state.zoom)) /2
        }
      })
    },
@@ -38,16 +43,12 @@
      $(window).on('resize',function(){
        this.getWindowSize();
        this.setState({
-         zoom:1,
-         overlayPos: {
-           weightX:.5,
-           weightY: .5,
-           left: 0,
-           top: 0
-         }
+         zoom:1
        })
      }.bind(this));
      this.getWindowSize();
+
+
    },
    componentWillUnmount: function() {
      $(window).off('resize');
@@ -81,10 +82,11 @@
      this.setState({dragging:false})
    },
    mMove: function(e) {
+     e.preventDefault()
      if(!this.state.dragging) {
        return false;
      }
-     this.positionFinder(e);
+     this.positionFinder(e.pageX,e.pageY, this.state.mousePos.x, this.state.mousePos.y)
 
      this.setState({
        mousePos: {
@@ -95,11 +97,31 @@
 
 
    },
-   positionFinder: function(event) {
-     var xDif = event.clientX - this.state.mousePos.x,
-          yDif = event.clientY - this.state.mousePos.y,
-          newPosX = imgX + xDif,
-          newPosY = imgY + yDif;
+   positionFinder: function(nX,nY,pX,pY) {
+
+     var  oX = parseFloat($(this.refs.mapOverlay).css('left')),
+          oy = parseFloat($(this.refs.mapOverlay).css('top')),
+          oW = $(this.refs.mapOverlay).width(),
+          oH = $(this.refs.mapOverlay).height(),
+          xThresh = ($(this.refs.mapWindow).width() - oW) ;
+     var xDif = nX - pX,
+          yDif = nY - pY;
+          console.log(oX);
+          console.log(xThresh);
+      var newX = xDif + this.state.overlayPos.x;
+      if(newX < 0 && newX > (xThresh)) {
+        console.log('move')
+        this.setState({
+          overlayPos: {
+            weightY: this.state.overlayPos.weightY,
+            weightX: (-xDif*.001) + this.state.overlayPos.weightX,
+            x: newX
+          }
+        });
+
+      } else {
+
+      }
    },
   render: function() {
 
@@ -117,8 +139,8 @@
     var mapDim = {
       width: this.state.windowDim.width * this.state.zoom,
       height: this.state.windowDim.height * this.state.zoom,
-      left: -(xDif*this.state.overlayPos.x)+'px',
-      top: -(yDif*this.state.overlayPos.y)+'px'
+      left: this.state.overlayPos.x+'px',
+      top: this.state.overlayPos.y+'px'
     }
     return (
       <div className="map-window" ref="mapWindow"
@@ -133,8 +155,10 @@
         <div className="map-overlay"
           onMouseDown={this.mDown}
           onMouseUp={this.mUp}
+          onMouseLeave={this.mUp}
           onMouseMove={this.mMove}
           style={mapDim}
+          ref="mapOverlay"
         >
         <MapPoint
         overlayDim={mapDim}
@@ -149,6 +173,7 @@
         <div className="zoom-controls">
           {zoomin}
           {zoomout}
+
         </div>
 
 
