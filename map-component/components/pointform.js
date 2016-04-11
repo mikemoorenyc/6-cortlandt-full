@@ -23,7 +23,7 @@ var PointForm = React.createClass({
   },
   getInitialState: function() {
 
-//console.log(this.props.coor);
+//. console.log(this.props.coor);
     return {
       title: this.props.title,
       cat: this.props.cat,
