@@ -1,6 +1,6 @@
 <?php
-$cats = get_post_meta( $post->ID, 'map_categories', true );
 
+$cats = get_post_meta( $post->ID, 'map_categories', true );
 
 
 if(empty($cats)) {

@@ -79,7 +79,6 @@ function footer_copy_editor()
     <?php
 }
 
-
 include 'contact-constructor.php';
 
 include 'admin-check-off.php';
@@ -87,4 +86,5 @@ include 'press-section.php';
 
 include 'map-component/main-include.php';
 include 'login-styling.php';
+include 'map-upload.php';
 ?>

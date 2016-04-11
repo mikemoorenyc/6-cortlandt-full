@@ -113,7 +113,7 @@ var PointsComponent = React.createClass({
     if(this.state.points < 1) {
 
       return (
-        <div className="points-component empty-state" style={{backgroundImage: 'url('+SITEDIRECTORY+'/assets/imgs/empty-map.jpg'+')'}}>
+        <div className="points-component empty-state" >
         <input type="hidden" name="map_data" id="map_data" value={serialized} />
 
 

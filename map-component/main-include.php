@@ -44,8 +44,8 @@ function location_bottom_scripts() {
   if(basename(get_page_template()) != 'template-location.php') {
     return;
   }
-  ?>
-  <?php include 'location-bottom.php';?>
+  global $post;
+   include 'location-bottom.php';?>
   <script src="<?php echo get_bloginfo('template_url');?>/map-component/plain.js"></script>
 
   <script src="<?php echo get_bloginfo('template_url');?>/map-component/build.js"></script>

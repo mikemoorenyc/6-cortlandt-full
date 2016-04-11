@@ -75,10 +75,10 @@
      if(dir == 'down') {
        inc= -inc;
      }
-     if((this.state.zoom+inc <= 1 && dir =='down')) {
+     if((this.state.zoom+inc < 1 && dir =='down')) {
        return false;
      }
-     if(this.state.zoom+inc >=2 && dir == 'up') {
+     if(this.state.zoom+inc >2 && dir == 'up') {
        return false;
      }
 
@@ -189,7 +189,7 @@
 
     var zoomin,
         zoomout;
-    if(this.state.zoom <=2) {
+    if(this.state.zoom <2) {
       zoomin= <div className="zoom-increase" onClick={this.zoomIncrease}>Increase</div>
 
     }
