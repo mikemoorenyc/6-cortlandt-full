@@ -43,8 +43,3 @@ function contactConstructor($list) {
   </ul>
   <?php
 }
-
-
-
-
-?>

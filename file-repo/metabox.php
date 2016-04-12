@@ -54,4 +54,3 @@ ReactDOM.render(React.createElement(MainFileComponent, null), document.getElemen
 </script>
 <?php
 }
- ?>

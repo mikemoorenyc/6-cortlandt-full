@@ -80,8 +80,8 @@ function footer_copy_editor()
 }
 
 include 'contact-constructor.php';
-
 include 'admin-check-off.php';
+
 include 'press-section.php';
 
 include 'map-component/main-include.php';

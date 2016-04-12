@@ -1,7 +1,9 @@
 var MainFileComponent = React.createClass({
   getInitialState: function(){
     return {
-      file: {}
+      file: {
+        state: 'empty'
+      }
     }
   },
   render: function(){

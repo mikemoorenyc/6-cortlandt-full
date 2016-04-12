@@ -2,11 +2,7 @@
 
 add_action( 'show_user_profile', 'admin_check_off' );
 add_action( 'edit_user_profile', 'admin_check_off' );
-function admin_check_off( $user ) { ?>
-
-
-
-  <?php
+function admin_check_off( $user ) {
   $su = get_the_author_meta( '_super_user', $user->ID );
   if ($su == 'yes') {
     $checked = 'checked';
@@ -43,9 +39,7 @@ function save_admin_check_off( $user_id ) {
 	update_usermeta( $user_id, '_super_user', $_POST['_super_user'] );
 }
 
-?>
 
-<?php
 add_action('admin_head', 'userhide');
 function userhide() {
   ?>
@@ -76,4 +70,3 @@ function userhide() {
         <?php
       }
 }
-?>
