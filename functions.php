@@ -87,4 +87,5 @@ include 'press-section.php';
 include 'map-component/main-include.php';
 include 'login-styling.php';
 include 'map-upload.php';
+include 'file-repo/main-include.php';
 ?>

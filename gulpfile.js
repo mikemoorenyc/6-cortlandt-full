@@ -70,6 +70,21 @@ gulp.task('mapcomponent', function(){
   htmlProcessor(['map-component/*.html','map-component/*.php'],'../'+buildDir+'/map-component')
 });
 
+// FILE REPO COMPONENT
+gulp.task('filerepo', function(){
+  gulp.src(['file-repo/components/*.js'])
+  .pipe(concat('build.js'))
+  .pipe(babel({
+			presets: ['es2015', 'react']
+		}))
+  .pipe(uglify())
+  .pipe(replace('$(', 'jQuery('))
+  .pipe(gulp.dest('../'+buildDir+'/file-repo'));
+
+  sassProcessor(['file-repo/main.scss'],'../'+buildDir+'/file-repo')
+  htmlProcessor(['file-repo/*.html','file-repo/*.php'],'../'+buildDir+'/file-repo')
+});
+
 
 //SASS CSS TASK
 gulp.task('sass', function () {
@@ -132,5 +147,6 @@ gulp.task('watch', function() {
     gulp.watch(['style.css', 'screenshot.png'], ['wpdump']);
     gulp.watch(['assets/svgs/*.svg'], ['svgstore']);
     gulp.watch(['map-component/**/*'], ['mapcomponent']);
+    gulp.watch(['file-repo/**/*'], ['filerepo']);
 });
-gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore', 'mapcomponent']);
+gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore', 'mapcomponent', 'filerepo']);
