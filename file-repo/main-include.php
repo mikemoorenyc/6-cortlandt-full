@@ -40,7 +40,7 @@ $region_labels = array(
     'new_item_name' => __( 'New Property Group Name' ),
     'menu_name' => __( 'Property Groups' ),
   );
-  register_taxonomy('regions',array('file'), array(
+  register_taxonomy('pgroup',array('file'), array(
     'hierarchical' => true,
     'labels' => $region_labels,
     'show_ui' => true,
@@ -50,4 +50,5 @@ $region_labels = array(
   ));
 
 include 'metabox.php';
+include 'user-checkoff.php';
  ?>
