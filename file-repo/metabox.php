@@ -81,16 +81,22 @@ function file_bottom_scripts() {
 	//GET CURRENTLY SELECTED CATEGORIES
 	$groups = get_the_terms ( $post->ID, 'pgroup');
 
-	$groupArray = '[';
-	$looper = 0;
-	foreach($groups as $g) {
-		if($looper >0) {
-			$groupArray = $groupArray.',';
+	if(empty($groups)){
+		$groupArray = '[]';
+	} else {
+		$groupArray = '[';
+		$looper = 0;
+		foreach($groups as $g) {
+			if($looper >0) {
+				$groupArray = $groupArray.',';
+			}
+			$groupArray = $groupArray.$g->term_id;
+			$looper++;
 		}
-		$groupArray = $groupArray.$g->term_id;
-		$looper++;
+		$groupArray = $groupArray.']';
 	}
-	$groupArray = $groupArray.']';
+
+
 
 
 	//GET SELECTED USERS
