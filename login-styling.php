@@ -5,7 +5,7 @@ function my_login_logo() { ?>
         background:#f3f3f2;
       }
       .login h1 a {
-        display:none;
+        display:none !important;
       }
         .login h1 {
             width:250px;
