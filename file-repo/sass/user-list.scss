@@ -12,6 +12,8 @@
     > label {
       display:block;
       padding: 10px 1px 10px 40px;
+      line-height:18px;
+      height:18px;
       .checkbox {
         display:block;
         box-sizing: border-box;
@@ -51,6 +53,8 @@
         padding: 0 5px;
         text-transform: uppercase;
         border-radius:3px;
+        height:18px;
+        line-height: 18px;
       }
     }
     &:first-child {

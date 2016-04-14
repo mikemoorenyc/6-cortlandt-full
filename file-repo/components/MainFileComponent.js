@@ -32,6 +32,16 @@ var MainFileComponent = React.createClass({
     $(window).on('resize',function(){
       this.sizeSet();
     }.bind(this));
+
+    $('#pgroupchecklist input[type="checkbox"]').on('change',function(){
+      var groupArray = [];
+      $('#pgroupchecklist input[type="checkbox"]:checked').each(function(index,e){
+        groupArray.push(parseFloat($(e).val()));
+      });
+      this.setState({
+        selectedGroups: groupArray
+      });
+    }.bind(this));
   },
   sizeSet: function(){
     if($(this.refs.sizer).width() < 700){
@@ -42,13 +52,15 @@ var MainFileComponent = React.createClass({
   },
   componentWillUnmount: function() {
     $(window).off('resize');
+    $('#pgroupchecklist input[type="checkbox"]').off('change');
   },
   render: function(){
-    console.log();
+    
     return(
 
       <div className={this.state.width} ref="sizer">
       <input type="hidden" name="file_info" id="file_info" value={JSON.stringify(this.state.file)} />
+      <input type="hidden" name="selected_user_group" id="selected_user_group" value={JSON.stringify(this.state.selectedUsers)} />
       <UserList
         userList={this.state.userList}
         selectedGroups={this.state.selectedGroups}

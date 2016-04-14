@@ -37,6 +37,16 @@ function save_file_data( $post_id ) {
   	update_post_meta( $post_id, 'file_info', $my_data );
   }
 
+	//SAVE SELECTED USER GROUPS
+	if ( ! isset( $_POST['selected_user_group'] ) ) {
+		return;
+	} else {
+    // Sanitize user input.
+  	$users = sanitize_text_field( $_POST['selected_user_group'] );
+    // Update the meta field in the database.
+  	update_post_meta( $post_id, 'selected_users', $users );
+  }
+
 }
 
 add_action( 'save_post', 'save_file_data' );
