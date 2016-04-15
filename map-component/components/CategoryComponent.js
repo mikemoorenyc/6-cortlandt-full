@@ -56,7 +56,8 @@ var CategoryComponent = React.createClass({
         id: this.idGenerator(currentCats),
         name:'',
         editing: true,
-        newCat: true
+        newCat: true,
+        color: '#cc0000'
       }
     ]);
     this.updateCat(newCats);
@@ -119,6 +120,7 @@ var CategoryComponent = React.createClass({
         catForm = <CatForm
                     name={cat.name}
                     id={cat.id}
+                    color={cat.color}
                     newPoint={cat.newCat}
                     deleteCat={this.deleteCat}
                     saveCat={this.setCat}

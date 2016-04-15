@@ -38,7 +38,7 @@ var CatItem = React.createClass({
       <div className="category-item" onMouseEnter={this.entering} onMouseLeave={this.leaving}>
       <div className="category-title">{this.props.name}</div>
       {handle}
-      <button onClick={this.editClick} className="edit-bubble" style={{backgroundColor: 'grey'}}>
+      <button onClick={this.editClick} className="edit-bubble" style={{backgroundColor: this.props.color}}>
         <span className="icon" data-hover={this.state.hovering} dangerouslySetInnerHTML={{__html:PENICON}}>
 
         </span>

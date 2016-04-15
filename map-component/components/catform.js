@@ -2,7 +2,8 @@ var CatForm =  React.createClass({
   getInitialState: function() {
     return {
       name: this.props.name,
-      id: this.props.id
+      id: this.props.id,
+      color:this.props.color
     }
   },
   changeName: function(e) {
@@ -40,6 +41,24 @@ var CatForm =  React.createClass({
       newCat: false
     });
   },
+  componentDidMount: function() {
+    $("#color-picker").spectrum({
+      preferredFormat: "hex",
+      showInput: true
+    });
+
+    $("#color-picker").on('change.spectrum', function(e, tinycolor) {
+
+      this.setState({
+        color: tinycolor.toHexString(tinycolor)
+      })
+
+    }.bind(this));
+  },
+  componentWillUnmount: function() {
+    $("#color-picker").off('change.spectrum');
+    $("#color-picker").spectrum("destroy");
+  },
   render: function() {
     var disabled = true;
     if(this.state.name ) {
@@ -66,6 +85,7 @@ var CatForm =  React.createClass({
             <input type="text" placeholder="Category Name" value={this.state.name} onChange={this.changeName}/>
 
           </div>
+           <input type="text" id="color-picker" onChange={this.changeColor} value={this.state.color} />
           <br className="clear" />
         </div>
 
