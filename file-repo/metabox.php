@@ -58,11 +58,12 @@ function file_bottom_scripts() {
 		$userObj['id'] = $u->ID;
 		$info = get_userdata($u->ID);
 		if(empty($info->last_name) || empty($info->first_name)) {
+			$userObj['displayName'] = $info->user_login;
 			$userObj['lastName'] = $info->user_login;
-			$userObj['firstName'] = false;
+
 		} else {
+			$userObj['displayName'] = $info->first_name." ".$info->last_name;
 			$userObj['lastName'] = $info->last_name;
-			$userObj['firstName'] = $info->first_name;
 		}
 		$groups = get_the_author_meta( '_pgroups', $u->ID);
 
@@ -77,6 +78,7 @@ function file_bottom_scripts() {
 		array_push($userArray,$userObj);
 
 	}
+
 
 	//GET CURRENTLY SELECTED CATEGORIES
 	$groups = get_the_terms ( $post->ID, 'pgroup');

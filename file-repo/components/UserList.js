@@ -1,5 +1,24 @@
 var UserList = React.createClass({
+  getInitialState: function() {
+    return {
+      selectedUserList: this.selectedUserListCreate(this.props.selectedUsers)
+    }
+  },
+  selectedUserListCreate: function(ids) {
+    var selectedUserList = [];
+    $(this.props.userList).each(function(index,e){
+        if(jQuery.inArray( parseFloat(e.id),ids ) > -1) {
+          selectedUserList.push(e);
+        }
+    });
+    return selectedUserList;
+  },
+   componentWillReceiveProps: function(nextProps) {
 
+     this.setState({
+       selectedUserList: this.selectedUserListCreate(nextProps.selectedUsers)
+     });
+   },
   checkboxClicked: function(e) {
     e.preventDefault(e);
     this.props.checkToggle(e.target.value);
@@ -11,7 +30,7 @@ var UserList = React.createClass({
     var textA = a.lastName.toUpperCase();
     var textB = b.lastName.toUpperCase();
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-    });
+  });
     var userBlock = userArray.map(function(user){
       var displayName,
           inGroup,
@@ -20,12 +39,7 @@ var UserList = React.createClass({
           checkBox,
           userChecked = false,
           checkDisabled = false;
-      //SET UP DISPLAY NAME
-      if(!user.firstName) {
-        displayName = user.lastName;
-      } else {
-        displayName = user.lastName+', '+user.firstName;
-      }
+
 
       //IF IN GROUP
       var groups = user.groups;
@@ -55,16 +69,32 @@ var UserList = React.createClass({
             <span className="checkbox" data-checked={userChecked}>
               <span className="dashicons dashicons-yes"></span>
             </span>
-            {displayName} {inGroup}
+            {user.displayName} {inGroup}
           </label>
         </div>
       );
     }.bind(this));
+
+    //IF SELECTED USERS EXIST
+    var selectedUsers = false;
+    if(this.state.selectedUserList.length > 0) {
+      selectedUsers = <SelectedUserList
+      users={this.state.selectedUserList}
+      checkToggle={this.props.checkToggle}
+
+      />
+    }
+
     return (
       <div className="user-list box-styler">
-        <div>
-        {userBlock}
-        </div>
+      <UserSearch
+      selectedUsers = {this.state.selectedUserList}
+      allUsers = {userArray}
+      selectedGroups= {this.props.selectedGroups}
+      checkToggle={this.props.checkToggle}
+
+      />
+        {selectedUsers}
       </div>
     )
   }
