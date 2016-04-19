@@ -42,9 +42,20 @@ function save_file_data( $post_id ) {
 		return;
 	} else {
     // Sanitize user input.
-  	$users = sanitize_text_field( $_POST['selected_user_group'] );
+		//DELETE ALL users
+		delete_post_meta($post_id, 'selected_users');
+		$users = sanitize_text_field( $_POST['selected_user_group'] );
+		$users = str_replace('[','', $users);
+		$users = str_replace(']','', $users);
+		$users = explode(',',$users);
+
+		foreach($users as $u) {
+			add_post_meta($post_id,'selected_users', intval($u), false);
+		}
+
+
     // Update the meta field in the database.
-  	update_post_meta( $post_id, 'selected_users', $users );
+  	//update_post_meta( $post_id, 'selected_users', $users );
   }
 
 }

@@ -102,9 +102,20 @@ function file_bottom_scripts() {
 
 
 	//GET SELECTED USERS
-	$selectedUsers = get_post_meta($post->ID, 'selected_users', true);
+	$selectedUsers = get_post_meta($post->ID, 'selected_users', false);
 	if(empty($selectedUsers)) {
-		$selectedUsers = '[]';
+		$selectedArray = '[]';
+	} else {
+		$selectedArray = '[';
+		$looper = 0;
+		foreach($selectedUsers as $u) {
+			if($looper > 0) {
+				$selectedArray .= ',';
+			}
+			$selectedArray .= $u;
+			$looper++;
+		}
+		$selectedArray .= ']';
 	}
   ?>
 
@@ -115,7 +126,7 @@ function file_bottom_scripts() {
 		file: <?php echo $fileJSON;?>,
 		userList : <?php echo json_encode($userArray);?>,
 		selectedGroups : <?php echo $groupArray;?>,
-		selectedUsers : <?php echo $selectedUsers;?>
+		selectedUsers : <?php echo $selectedArray;?>
   }
 
 
