@@ -55,7 +55,9 @@
       <?php
       $contactPage = get_page_by_title('Contact');
       $contacts = get_post_meta( $contactPage->ID, 'contact-list', true );
-      contactConstructor($contacts);
+      if(!empty($contacts)) {
+        contactConstructor($contacts);
+      }
 
       ?>
     </div>
