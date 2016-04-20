@@ -27,7 +27,8 @@ function siteInit() {
       }.bind(this));
 
     }
-  }.orientation();
+  };
+  myApp.orientation();
 
   //PROGRAMATICALLY Attach Fastclick
   if(Modernizr.touchevents) {
@@ -37,7 +38,23 @@ function siteInit() {
   }
 
 
+
+
   theHistory();
+
+  //LOAD IN SVG
+  
+  $.ajax({
+    method: 'GET',
+    url: myApp.siteDir+'/assets/svgs.svg',
+    dataType: 'html'
+  })
+  .done(function(data){
+
+
+
+    $('body').prepend('<div class="hide">'+data+'</div>');
+  });
 
 
   //CHECK IF CSS IS LOADED
