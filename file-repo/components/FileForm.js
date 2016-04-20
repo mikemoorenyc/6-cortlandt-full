@@ -54,6 +54,7 @@ var FileForm = React.createClass({
 
           } else {
             //ERROR STATE
+            console.log(data);
             $(this.refs.fileinput).val('');
             this.setState({
               state: 'error'

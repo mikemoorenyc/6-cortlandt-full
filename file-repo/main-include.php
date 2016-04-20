@@ -22,6 +22,7 @@ $propargs = array(
   'supports' => array(
       'title',
       'revisions',
+      'thumbnail'  
     )
   );
 register_post_type( 'file', $propargs );

@@ -1,4 +1,5 @@
 <?php
+
 require_once('../../../../wp-blog-header.php');
 
 
@@ -23,7 +24,7 @@ if($fileAllowed) {
 
 
   if(move_uploaded_file($_FILES["file"]["tmp_name"], $path.'/file.txt')){
-    http_response_code(200);
+    header('Content-Type: application/json',true,200);
     //GENERATE RANDOM COLOR
     function random_color_part() {
     return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
