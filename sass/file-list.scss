@@ -7,7 +7,8 @@
   flex-wrap: wrap;
 
 
-  >a {
+  >div {
+    cursor: pointer;
     display:block;
     background-size:cover;
     background-position:center center;
@@ -74,6 +75,17 @@
       top: 50%;
       transform: translate(-50%,-50%);
       transition: opacity .2s;
+    }
+    .ext {
+      position:absolute;
+      right: 10px;
+      bottom: 10px;
+      color:rgba(white,.85);
+      font-size:.75em;
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 1;
+      text-shadow: 0 0 3px rgba(black,.2);
     }
     .download-overlay {
       position:absolute;

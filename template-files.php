@@ -33,10 +33,12 @@ foreach($files as $f) {
   }
   ?>
 
-<a href="#" target="_blank" >
+<div>
   <div class="content">
   <div class="header-img <?php echo $imgClass;?>" <?php echo $img;?>>
+
     <?php
+
     if($imgClass == 'no-img') {
       ?>
       <svg class="file-icon">
@@ -46,7 +48,9 @@ foreach($files as $f) {
     }
     ?>
 
-
+    <div class="ext">
+      .<?php echo pathinfo($finfo->filename, PATHINFO_EXTENSION);?>
+    </div>
     <div class="download-overlay">
       <div class="inner">
         <svg class="dl-icon">
@@ -100,7 +104,7 @@ foreach($files as $f) {
 
 
 
-</a>
+</div>
 
   <?php
 }
