@@ -138,6 +138,23 @@ gulp.task('wpdump', function(){
     .pipe(gulp.dest('../'+buildDir));
 });
 
+//PRESS SECTION
+// MAP COMPONENT
+gulp.task('presssection', function(){
+  gulp.src(['press-section/components/*.js'])
+  .pipe(concat('build.js'))
+  .pipe(babel({
+			presets: ['es2015', 'react']
+		}))
+  .pipe(uglify({mangle:false}))
+  .pipe(replace('$(', 'jQuery('))
+  .pipe(gulp.dest('../'+buildDir+'/press-section'));
+  jsProcessor([ ], '../'+buildDir+'/press-section', 'plain.js');
+
+  sassProcessor(['press-section/main.scss'],'../'+buildDir+'/press-section')
+  htmlProcessor(['press-section/*.html','press-section/*.php'],'../'+buildDir+'/press-section')
+});
+
 gulp.task('watch', function() {
     gulp.watch('js/**/*.js', ['js']);
     gulp.watch(['sass/**/*'], ['sass']);
@@ -147,6 +164,6 @@ gulp.task('watch', function() {
     gulp.watch(['style.css', 'screenshot.png'], ['wpdump']);
     gulp.watch(['assets/svgs/*.svg'], ['svgstore']);
     gulp.watch(['map-component/**/*'], ['mapcomponent']);
-    gulp.watch(['file-repo/**/*'], ['filerepo']);
+    gulp.watch(['press-section/**/*'], ['presssection']);
 });
-gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore', 'mapcomponent', 'filerepo']);
+gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore', 'mapcomponent', 'press-section']);

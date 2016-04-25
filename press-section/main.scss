@@ -1,0 +1,124 @@
+#post-body-content {
+  margin-bottom: 0;
+}
+#press_box {
+  h2, .handlediv {
+    display:none;
+  }
+  .inside {
+    margin: 0;
+    padding:25px;
+  }
+
+}
+#titlediv {
+  display:none;
+}
+#press-entry-point {
+  label {
+    font-weight:bold;
+    margin-bottom:5px;
+    display:block;
+  }
+  input, textarea {
+    width:100%;
+  }
+  textarea {
+    height:50px;
+  }
+  .counter {
+    font-size:.85em;
+    text-align: right;
+    opacity:.75;
+    position: relative;
+    margin-bottom: -5px;
+  }
+  a.remover {
+    text-decoration: none;
+    color: #a00;
+    &:hover {
+      color:red;
+    }
+  }
+  .left-side {
+    float:left;
+    width:calc(100% - 215px);
+    > div {
+      margin-bottom: 15px;
+    }
+  }
+  .right-side {
+    float: right;
+    width: 175px;
+  }
+}
+#read-more-row {
+  .button-primary {
+    width: 30px;
+    height:30px;
+    padding-left: 0;
+    padding-right: 0;
+    line-height: normal;
+    text-align: center;
+    > span {
+      display:inline-block;
+      vertical-align: middle;
+
+    }
+  }
+  input {
+    display: inline-block;
+    width: calc(100% - 42px);
+    margin-right:10px;
+    height:30px;
+  }
+  .with-file {
+    line-height: 30px !important;
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .dashicons {
+      line-height: 30px;
+    }
+    .filer {
+      margin-right: 20px;
+      opacity: .5;
+    }
+  }
+}
+#image-row {
+  .img-container {
+    cursor: pointer;
+    width: 175px;
+    height: 225px;
+    background:#efefef;
+    color:darken(#efefef, 12%);
+    position: relative;
+    margin-bottom:10px;
+    > img {
+      position: relative;
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    .helper {
+      position:absolute;
+      left: 50%;
+      top:50%;
+      transform: translate(-50%,-50%);
+      text-shadow: 0 2px 2px rgba(white,.75);
+      > span {
+        display:block;
+        text-align: center;
+        font-weight:bold;
+        &.dashicons {
+          font-size: 80px;
+          width: auto;
+          height:auto;
+        }
+      }
+    }
+  }
+}

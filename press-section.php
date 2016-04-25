@@ -1,45 +1,11 @@
 <?php
-function post_types_init() {
 
-//PROPERTY
-$propargs = array(
-  'label' => 'Press',
-  'public' => false,
-  'labels' => array(
-    'add_new_item' => 'Add New Press Item',
-    'name' => 'Press',
-    'edit_item' => 'Edit Press Item',
-    'search_items' => 'Search Press',
-    'not_found' => 'No press items Found.',
-    'all_items' => 'All Press'
-  ),
-  'show_ui' => true,
-  'capability_type' => 'post',
-  'hierarchical' => false,
-  'has_archive' => false,
-  'rewrite' => array('slug' => 'press'),
-  'query_var' => true,
-  'menu_icon' => 'dashicons-media-document',
-  'supports' => array(
-      'title',
-      'revisions',
-      'thumbnail',
-    )
-  );
-register_post_type( 'press', $propargs );
-
-
-
-}
-
-add_action( 'init', 'post_types_init' );
 
 //UI
 
 //BOTTOM CONTENT
 
-add_action('admin_footer-post.php', 'press_ui_content');
-add_action('admin_footer-post-new.php', 'press_ui_content');
+
 function press_ui_content() {
 
 	global $post;
