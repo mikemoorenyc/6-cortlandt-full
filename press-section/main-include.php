@@ -42,6 +42,7 @@ function add_file_header_scripts($hook) {
   if ( !('post.php' == $hook || 'post-new.php' == $hook) ) {
       return;
   }
+  wp_enqueue_media();
   wp_enqueue_script( 'react_main', 'https://fb.me/react-15.0.1.js' );
   wp_enqueue_script( 'react_dom', 'https://fb.me/react-dom-15.0.1.js' );
   wp_enqueue_style('main_style', get_bloginfo('template_url').'/press-section/main.css');

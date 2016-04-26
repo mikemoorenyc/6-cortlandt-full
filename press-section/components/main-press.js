@@ -30,14 +30,50 @@ var MainPress = React.createClass({
   validator: function() {
     var failed = false;
     if(this.state.title.length <1 || this.state.linkURL.length < 1 || this.state.excerpt.length < 1) {
-      return false;
+      failed = true;
+    }
+    if(this.state.linkURL.length < 1) {
+      this.setState({
+        linkerror: 'errored'
+      });
+    } else {
+      this.setState({
+        linkerror: ''
+      });
+    }
+    if(this.state.title.length < 1) {
+      this.setState({
+        titleerror: 'errored'
+      });
+    } else {
+      this.setState({
+        titleerror: ''
+      });
+    }
+    if(this.state.excerpt.length < 1) {
+      this.setState({
+        excerpterror: 'errored'
+      });
+    } else {
+      this.setState({
+        excerpterror: ''
+      });
     }
 
     //CHECK URL
 
 var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/i;
-
+  if(this.state.linkType == 'external') {
     if(!myRegExp.test(this.state.linkURL)) {
+
+      failed = true;
+      this.setState({
+        linkerror: 'errored'
+      });
+    }
+  }
+
+    if(failed === true) {
       return false;
     }
   },
@@ -59,7 +95,7 @@ var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3
             } else {
               theurl = uploaded_image.attributes.url;
             }
-
+            
             this.setState({
               [keyprefix+'URL'] : theurl,
               [keyprefix+'ID'] : uploaded_image.id
@@ -84,6 +120,7 @@ var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3
     this.stateUpdate('imgID', '');
   },
   readChange: function(e) {
+
     this.setState({
       linkURL: e.target.value
     });
@@ -118,7 +155,7 @@ var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3
     }
 
     var linkInput = <div>
-                      <input id="input-read-more" placeholder="Enter a URL for the whole article" value={this.state.linkURL} type="text" onChange={this.readChange}/>
+                      <input className={this.state.linkerror} id="input-read-more" placeholder="Valid URL for whole article" value={this.state.linkURL} type="text" onChange={this.readChange}/>
                       <button className="button button-primary" title={'Link to a document'} onClick={this.docAdd}><span className="dashicons dashicons-welcome-add-page"></span></button>
                     </div>;
     if(this.state.linkType !== 'external') {
@@ -138,11 +175,11 @@ var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3
         <div className="left-side">
           <div id="title-row">
             <label htmlFor="input-title">Title</label>
-            <input type="input" id="input-title" value={this.state.title} onChange={this.titleUpdate}/>
+            <input className={this.state.titleerror} type="text" id="input-title" value={this.state.title} onChange={this.titleUpdate}/>
           </div>
           <div id="excerpt-row">
             <label htmlFor="input-excerpt">Excerpt</label>
-            <textarea id="input-excerpt" value={this.state.excerpt} onChange={this.excerptUpdate} maxLength={150}/>
+            <textarea className={this.state.excerpterror} id="input-excerpt" value={this.state.excerpt} onChange={this.excerptUpdate} maxLength={150}/>
             <div className="counter">{this.state.excerpt.length} / 150</div>
           </div>
           <div id="read-more-row">

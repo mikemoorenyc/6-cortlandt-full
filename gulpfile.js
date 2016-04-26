@@ -166,4 +166,4 @@ gulp.task('watch', function() {
     gulp.watch(['map-component/**/*'], ['mapcomponent']);
     gulp.watch(['press-section/**/*'], ['presssection']);
 });
-gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore', 'mapcomponent', 'press-section']);
+gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore', 'mapcomponent', 'presssection']);

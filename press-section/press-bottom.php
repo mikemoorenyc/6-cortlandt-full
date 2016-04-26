@@ -31,6 +31,11 @@ function press_ui_content() {
       $imgURL = wp_get_attachment_image_src($decoded->imgID, 'medium', false);
       $imgURL = $imgURL[0];
     }
+    if(empty($decoded->linkType)) {
+      $type = 'external';
+    } else {
+      $type = $decoded->linkType;
+    }
 
     ?>
 
@@ -39,11 +44,14 @@ function press_ui_content() {
     var APP = {
       title: '<?php echo $decoded->title;?>',
       excerpt: '<?php echo $decoded->excerpt;?>',
-      linkType: '<?php echo $decoded->linkType;?>',
+      linkType: '<?php echo $type;?>',
       linkID: <?php echo $linkID;?>,
       linkURL: '<?php echo $linkURL;?>',
       imgID: <?php echo $imgID;?>,
-      imgURL: '<?php echo $imgURL;?>'
+      imgURL: '<?php echo $imgURL;?>',
+      linkerror: '',
+      titleerror: '',
+      excerpterror: ''
     };
 
 
