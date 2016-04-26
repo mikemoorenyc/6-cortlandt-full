@@ -1,6 +1,17 @@
 var MainPress = React.createClass({
   getInitialState: function() {
-    return APP;
+    return {
+      title: $('#unsafe-values .title').text(),
+      excerpt: $('#unsafe-values .excerpt').text(),
+      linkType: APP.linkType,
+      linkID: APP.linkID,
+      linkURL: APP.linkURL,
+      imgID: APP.imgID,
+      imgURL: APP.imgURL,
+      linkerror: '',
+      titleerror: '',
+      excerpterror: ''
+    }
   },
   stateUpdate: function(key,value) {
     var theState = this.state;
@@ -19,6 +30,7 @@ var MainPress = React.createClass({
     $('input#title').val(e);
   },
   componentDidMount: function() {
+    $('#unsafe-values').remove();
     $('#publishing-action input.button').on('click', function(){
 
       var conclusion = this.validator();
@@ -95,7 +107,7 @@ var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3
             } else {
               theurl = uploaded_image.attributes.url;
             }
-            
+            console.log(uploaded_image);
             this.setState({
               [keyprefix+'URL'] : theurl,
               [keyprefix+'ID'] : uploaded_image.id
@@ -142,8 +154,8 @@ var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3
     var thumb,
         thumbState = 'no-thumb',
         imgHelper = <div className="helper">
-                      <span className="dashicons dashicons-plus-alt"></span>
-                      <span className="title">Click to add</span>
+                      <span className="dashicons dashicons-format-image"></span>
+                      <button className="button button-primary button-small">Add an image</button>
                     </div>,
         removeThumb = 'hidden';
 
@@ -155,7 +167,7 @@ var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3
     }
 
     var linkInput = <div>
-                      <input className={this.state.linkerror} id="input-read-more" placeholder="Valid URL for whole article" value={this.state.linkURL} type="text" onChange={this.readChange}/>
+                      <input className={this.state.linkerror} id="input-read-more" placeholder="Valid URL for the whole article" value={this.state.linkURL} type="text" onChange={this.readChange}/>
                       <button className="button button-primary" title={'Link to a document'} onClick={this.docAdd}><span className="dashicons dashicons-welcome-add-page"></span></button>
                     </div>;
     if(this.state.linkType !== 'external') {

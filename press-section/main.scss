@@ -45,14 +45,14 @@
   }
   .left-side {
     float:left;
-    width:calc(100% - 215px);
+    width:calc(100% - 260px);
     > div {
       margin-bottom: 15px;
     }
   }
   .right-side {
     float: right;
-    width: 175px;
+    width: 225px;
   }
 }
 #read-more-row {
@@ -93,8 +93,8 @@
 #image-row {
   .img-container {
     cursor: pointer;
-    width: 175px;
-    height: 225px;
+    width: 225px;
+    height: calc(225px*1.17);
     background:#f5f5f5;
     border:1px solid #ddd;
     color:rgba(black,.15);
@@ -112,7 +112,10 @@
       left: 50%;
       top:50%;
       transform: translate(-50%,-50%);
-
+      button {
+        margin-top:10px;
+        pointer-events: none;
+      }
       > span {
         display:block;
         text-align: center;

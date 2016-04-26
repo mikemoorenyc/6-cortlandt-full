@@ -20,39 +20,32 @@ $press = $files_in_cat_query->get_posts();
 
     <?php
     foreach($press as $p) {
+      $obj= json_decode(get_post_meta($p->ID, 'press_data', true));
+      //GET THE LINK
+      if($obj->linkType == 'external') {
+        $url = $obj->linkURL;
+      } else {
+        $url = wp_get_attachment_url( $obj->linkID, 'full' );
+      }
+      if(empty($obj->imgID)) {
+        $imgURL = $siteDir.'/assets/imgs/press-fallback.jpg';
+      } else {
+        $imgURL = wp_get_attachment_image_src($obj->imgID, 'medium', false);
+        $imgURL = $imgURL[0];
+      }
       ?>
-      <li class="press-item">
-        <?php
-        //Determine Link
-        $readmore = get_post_meta( $p->ID, 'press-read-more-link', true )[0];
-        if($readmore['link-type'] == 'upload') {
-          $link = wp_get_attachment_url( $readmore['document'], 'full' );
-        } else {
-          $link = $readmore['external-site-url'];
-        }
-        ?>
+      <li class="press-item" >
 
-          <a href="<?php echo $link;?>" target="_blank" class="thumbnail">
-            <?php
-            $imgURL = $siteDir.'/assets/imgs/social-poster.jpg';
-            if(has_post_thumbnail($p->ID)) {
-              $imgURL = wp_get_attachment_image_src(get_post_thumbnail_id($p->ID), 'medium', false)[0];
-            }
-
-            ?>
-        <!--  <img src="<?php echo $imgURL;?>" alt="<?php echo $p->post_title;?>"/>-->
-          </a>
-          <h2><?php echo $p->post_title;?></h2>
-          <div class="excerpt">
-            <?php echo wpautop(get_post_meta( $p->ID, 'press-excerpt', true )[0]['copy'])?>
-          </div>
-          <a href="<?php echo $link;?>" target="_blank" class="read-more-btn">
-            Read more
-          </a>
+        <div class="poster" style="width:200px; height:200px; background-image:url(<?php echo $imgURL;?>);"></div>
 
 
-
-    </li>
+        <h2><?php echo $p->post_title;?></h2>
+        <p class="excerpt">
+          <?php echo $obj->excerpt;?>
+        </p>
+        <span class="read-more">Read More</span>
+        <a href="<?php echo $url;?>" target="_blank" class="cover"></a>
+      </li>
 
       <?php
     }

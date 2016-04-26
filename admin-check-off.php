@@ -48,6 +48,17 @@ function userhide() {
   display: none !important;
 
 }
+
+#wpadminbar,#adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
+  background:#4d2432;
+}
+#adminmenu .wp-has-current-submenu .wp-submenu, #adminmenu .wp-has-current-submenu .wp-submenu.sub-open, #adminmenu .wp-has-current-submenu.opensub .wp-submenu, #adminmenu a.wp-has-current-submenu:focus+.wp-submenu, .no-js li.wp-has-current-submenu:hover .wp-submenu, #adminmenu .wp-submenu, .folded #adminmenu .wp-has-current-submenu .wp-submenu, .folded #adminmenu a.wp-has-current-submenu:focus+.wp-submenu {
+  background:#854f5f;
+}
+#adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after {
+  border-right-color: #854f5f;
+}
+
 </style>
   <?php
   global $current_user;
