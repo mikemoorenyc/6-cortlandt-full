@@ -51,39 +51,7 @@ function htmlProcessor(blob, dest) {
     .pipe(htmlclean({}))
     .pipe(gulp.dest(dest));
 }
-// MAP COMPONENT
-gulp.task('mapcomponent', function(){
-  gulp.src(['map-component/components/*.js','map-component/runner.js'])
-  .pipe(concat('build.js'))
-  .pipe(babel({
-			presets: ['es2015', 'react']
-		}))
-  .pipe(uglify())
-  .pipe(replace('$(', 'jQuery('))
-  .pipe(gulp.dest('../'+buildDir+'/map-component'));
-  jsProcessor([ 'map-component/react-sort.js', 'map-component/spectrum.js'], '../'+buildDir+'/map-component', 'plain.js');
-  gulp.src('map-component/initiator.js')
-    .pipe(uglify())
-    .pipe(replace('$(', 'jQuery('))
-    .pipe(gulp.dest('../'+buildDir+'/map-component'));
-  sassProcessor(['map-component/main.scss'],'../'+buildDir+'/map-component')
-  htmlProcessor(['map-component/*.html','map-component/*.php'],'../'+buildDir+'/map-component')
-});
 
-// FILE REPO COMPONENT
-gulp.task('filerepo', function(){
-  gulp.src(['file-repo/components/*.js'])
-  .pipe(concat('build.js'))
-  .pipe(babel({
-			presets: ['es2015', 'react']
-		}))
-  .pipe(uglify())
-  .pipe(replace('$(', 'jQuery('))
-  .pipe(gulp.dest('../'+buildDir+'/file-repo'));
-
-  sassProcessor(['file-repo/main.scss'],'../'+buildDir+'/file-repo')
-  htmlProcessor(['file-repo/*.html','file-repo/*.php'],'../'+buildDir+'/file-repo')
-});
 
 
 //SASS CSS TASK
@@ -94,7 +62,7 @@ gulp.task('sass', function () {
 //JS TASK
 gulp.task('js', function () {
   jsProcessor([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'], '../'+buildDir+'/js', 'main.js');
-  jsProcessor('js/inline-load.js', '../'+buildDir+'/js', 'inline-load.js');
+  
 });
 
 //JS LINTING
@@ -139,7 +107,6 @@ gulp.task('wpdump', function(){
 });
 
 //PRESS SECTION
-// MAP COMPONENT
 gulp.task('presssection', function(){
   gulp.src(['press-section/components/*.js'])
   .pipe(concat('build.js'))
@@ -163,7 +130,6 @@ gulp.task('watch', function() {
     gulp.watch(['*.php', '*.html'], ['templatecrush']);
     gulp.watch(['style.css', 'screenshot.png'], ['wpdump']);
     gulp.watch(['assets/svgs/*.svg'], ['svgstore']);
-    gulp.watch(['map-component/**/*'], ['mapcomponent']);
     gulp.watch(['press-section/**/*'], ['presssection']);
 });
-gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore', 'mapcomponent', 'presssection']);
+gulp.task('build', [ 'js', 'imgmin', 'templatecrush', 'fontdump', 'wpdump','sass', 'svgstore', 'presssection']);

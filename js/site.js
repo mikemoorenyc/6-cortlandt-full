@@ -40,10 +40,10 @@ function siteInit() {
 
 
 
-  theHistory();
+  //theHistory();
 
   //LOAD IN SVG
-  
+
   $.ajax({
     method: 'GET',
     url: myApp.siteDir+'/assets/svgs.svg',
@@ -57,17 +57,7 @@ function siteInit() {
   });
 
 
-  //CHECK IF CSS IS LOADED
-  var thechecker = setInterval(function(){
 
-    var ztest = $('#css-checker').css('height');
-
-    if(ztest == '1px') {
-      cssLoaded = true;
-      clearInterval(thechecker);
-      console.log('css loaded');
-    }
-  }, 10);
 
 
   var firstSlug = $('#main-content-container').data('slug');

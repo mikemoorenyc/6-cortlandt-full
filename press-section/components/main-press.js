@@ -155,7 +155,7 @@ var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3
         thumbState = 'no-thumb',
         imgHelper = <div className="helper">
                       <span className="dashicons dashicons-format-image"></span>
-                      <button className="button button-primary button-small">Add an image</button>
+                      <span className="cta">Add an image</span>
                     </div>,
         removeThumb = 'hidden';
 

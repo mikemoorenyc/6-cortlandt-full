@@ -97,7 +97,7 @@
     height: calc(225px*1.17);
     background:#f5f5f5;
     border:1px solid #ddd;
-    color:rgba(black,.15);
+    color:rgba(black,.1);
     position: relative;
     margin-bottom:10px;
     > img {
@@ -119,11 +119,14 @@
       > span {
         display:block;
         text-align: center;
-        font-weight:bold;
         &.dashicons {
           font-size: 80px;
           width: auto;
           height:auto;
+        }
+        &.cta {
+          color:#0073aa;
+          margin-top:10px;
         }
       }
     }

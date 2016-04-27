@@ -23,8 +23,8 @@ $siteDesc = get_bloginfo('description');
 <html lang="en" data-current="<?php echo $slug;?>" class="slug-<?php echo $slug;?>">
 <head>
 
-<!-- ABOVE THE FOLD CSS -->
-<style><?php $inlinecss = file_get_contents($siteDir.'/css/main.css'); dirReplacer($inlinecss);?></style>
+<!-- STYLES -->
+<link rel="stylesheet" type="text/css" href="<?php echo $siteDir;?>/css/main.css?v=<?php echo time();?>">
 
 
 <?php
