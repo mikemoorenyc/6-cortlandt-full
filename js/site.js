@@ -37,6 +37,11 @@ function siteInit() {
     });
   }
 
+  $('.menu-open, .menu-close').click(function(e){
+    e.preventDefault();
+    $('html').toggleClass('__menu-opened');
+  });
+
 
 
 

@@ -9,7 +9,9 @@
 <div id="footer">
   <div class="inner clearfix">
     <div class="logo">
-
+      <a href="http://www.stribling.com/" target="_blank">
+        <img src="<?php echo $siteDir;?>/assets/imgs/stribling-logo.png" alt="Stribling Marketing Associates" width="93" />
+      </a>
     </div>
     <div class="contact-block">
       <?php
@@ -22,7 +24,7 @@
       ?>
     </div>
     <div class="disclaimer">
-      <?php echo htmlspecialchars_decode(get_option('footer_copy',''));?>
+      <a href="#" class="legal">LEGAL</a>
     </div>
   </div>
 </div>

@@ -6,14 +6,19 @@
 
 
 body {
-  font-family: $font-family;
-  font-size:$font-size-base;
+  font-family: 'Freight Sans', sans-serif;
+  font-size:14px;
   line-height: $line-height-base;
   color: $main-color;
   background-color: $body-bg;
+  background: gray;
   font-weight: normal;
   -webkit-font-smoothing: antialiased!important;
   -webkit-text-size-adjust: none;
+  @media($dt) {
+    font-size:20px;
+    line-height: (28/20);
+  }
 }
 
 // Reset fonts for relevant elements
@@ -61,7 +66,7 @@ svg {
 //TYPE
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-
+  font-weight: normal;
 }
 
 
@@ -125,10 +130,44 @@ blockquote {
 #app_wrap {
   position:relative;
   min-height:100vh;
+  background:white;
+  margin: 0 auto;
+  padding-top:68px;
+  overflow:hidden;
+  @media(min-width: 1000px) {
+    max-width: 1200px;
+    padding-top: 114px;
+  }
 }
 #footer {
   position:absolute;
   left: 0;
   bottom: 0;
   width:100%;
+}
+
+
+
+//STYLING
+.h-style {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: 18px;
+  color: $b-maroon;
+  @media($dt) {
+    font-size:27px;
+    line-height:(32/27);
+  }
+}
+.side-tag {
+  display:none;
+  position:absolute;
+  transform-origin: center right;
+  right: 25px;
+  top: 50%;
+  font-size: 13px !important;
+  transform: rotate(-90deg) translateY(-50%);
+  @media($dt) {
+    display:block;
+  }
 }

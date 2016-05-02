@@ -8,7 +8,7 @@ $ts: 0.25s;
 
 
 /*BREAK POINTS*/
-$dt-break: 801px;
+$dt-break: 1000px;
 $dt-max-break: ($dt-break - 1px);
 $tab: 'min-width:401px';
 $dt: 'min-width:#{$dt-break}';
@@ -16,11 +16,14 @@ $dt-max: 'max-width:#{$dt-max-break}';
 
 /* SITE COLORS */
 $body-bg: #fff;
-$main-color: #404041;
+$main-color: #414042;
 $link-color: #bc812c;
 $link-color-hover: black;
 
 $b-maroon: #7e505f;
+$l-maroon: #7d4f5f;
+$grey: #dbd9d6;
+$grey-bg: #f2f2f2;
 
 /*FONTS*/
 $font-family:  "Helvetica", sans-serif;

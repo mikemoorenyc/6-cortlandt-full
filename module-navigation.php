@@ -1,25 +1,32 @@
 <div id="header">
   <h1 class="logo">
     <a href="<?php echo $homeURL;?>/">
-    Six Cortlandt Alley
+    <span class="hide">Six Cortlandt Alley</span>
   </a>
   </h1>
+  <button class="menu-open h-style">Menu</button>
 <nav role="navigation" id="main-navigation">
-
+  <button class="menu-close">
+    <span class="hide">Close</span>
+    <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use></svg>
+  </button>
+  <div class="menu-list clearfix">
 <?php
 foreach($navItems as $n) {
   ?>
-<a href="<?php echo $n['url'];?>" data-slug="<?php echo $n['slug'];?>"><?php echo $n['title'];?></a>
+<a href="<?php echo $n['url'];?>" data-slug="<?php echo $n['class'];?>" class="h-style"><?php echo $n['title'];?></a>
   <?php
 }
 
 
 //
 ?>
+</div>
 
 
 
 </nav>
+<!--
 <div id="page-sub">
   <?php
   $subs = get_post_meta( $post->ID, 'sub-nav-sections', true );
@@ -41,4 +48,5 @@ foreach($navItems as $n) {
 
 
 </div>
+-->
 </div>
