@@ -4,20 +4,44 @@
   color:$grey;
   .inner {
     padding: 30px 0 17px 0;
+    @media($dt) {
+      padding: 40px percentage(65/1200) 20px;
+    }
+    > * {
+      @media($dt) {
+        display:inline-block;
+        vertical-align: baseline;
+      }
+    }
   }
+
   .logo {
     padding: 0 13px;
     img {
       margin:0;
     }
+    @media($dt) {
+      padding:0 percentage(70/1200) 0 0;
+      img {
+        width:150px;
+      }
+    }
   }
   .contact-block {
+    @media($dt) {
+      padding-bottom:25px;
+      font-size:14px;
+    }
     >ul {
       padding: 10px 0 0 0;
       > li {
         float: left;
         width:50%;
         padding: 0 13px;
+        @media($dt) {
+          width: auto;
+          padding: 0 30px 0 0;
+        }
         div, a {
           color:$grey;
           line-height: (15.73/14);
@@ -27,5 +51,18 @@
   }
   .disclaimer {
     padding: 30px 13px 0 13px;
+    @media($dt) {
+      position:absolute;
+      right: percentage(70/1200);
+      bottom: 40px;
+    }
+    a.legal {
+      color: $grey;
+      font-size:10px;
+      letter-spacing: .2em;
+      @media($dt) {
+        font-size:13px;
+      }
+    }
   }
 }

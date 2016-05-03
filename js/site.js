@@ -7,6 +7,7 @@ function siteInit() {
     dt: 801,
     tab: 401,
     ts: 500,
+    currentPosition: '',
     orientation : function() {
       function decider(w,x) {
         if (w >= x) {
@@ -61,6 +62,31 @@ function siteInit() {
     $('body').prepend('<div class="hide">'+data+'</div>');
   });
 
+  $(window).scroll(function(){
+    scrollState();
+    $('html').removeClass('__menu-opened');
+  });
+
+  function scrollState() {
+    var currentScroll = $(window).scrollTop();
+    currentScroll = currentScroll + $('header').height();
+    $("div[data-anchor]").each(function(){
+      var s = $(this);
+      var top = $(s).offset().top;
+      if (top <= currentScroll) {
+        $(this).addClass('__above');
+      } else {
+        $(this).removeClass('__above');
+      }
+    });
+    var currentPos = $('div[data-anchor].__above').last().attr('data-anchor');
+
+    if(currentPos != myApp.currentPosition) {
+      $('.sub-nav button').removeClass('__active');
+      $('.sub-nav button[data-target="'+currentPos+'"]').addClass("__active");
+      myApp.currentPosition = currentPos;
+    }
+  }
 
 
 

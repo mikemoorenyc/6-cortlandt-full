@@ -11,7 +11,8 @@ body {
   line-height: $line-height-base;
   color: $main-color;
   background-color: $body-bg;
-  background: gray;
+  background: lighten(black,98%);
+
   font-weight: normal;
   -webkit-font-smoothing: antialiased!important;
   -webkit-text-size-adjust: none;
@@ -32,6 +33,9 @@ textarea {
 }
 textarea {
   resize: none;
+}
+button {
+  cursor: pointer;
 }
 // Links
 a {
@@ -134,8 +138,13 @@ blockquote {
   margin: 0 auto;
   padding-top:68px;
   overflow:hidden;
-  @media(min-width: 1000px) and (min-height: 800px){
+    box-shadow: 0 0 5px rgba(black,.2);
+
+  @media(min-width:1000px) {
     max-width: 1200px;
+  }
+  @media(min-width: 1000px) and (min-height: 800px){
+
     padding-top: 114px;
   }
 }
@@ -149,6 +158,12 @@ blockquote {
 
 
 //STYLING
+img.intro-img {
+  margin-bottom: 30px;
+  @media($dt) {
+    margin-bottom:55px;
+  }
+}
 .h-style {
   text-transform: uppercase;
   letter-spacing: .2em;
@@ -157,6 +172,29 @@ blockquote {
   @media($dt) {
     font-size:27px;
     line-height:(32/27);
+  }
+  &.liner {
+    color: $main-color;
+    font-size:14px;
+    position:relative;
+    padding-bottom: 16px;
+    line-height:1em;
+    margin-bottom: 15px;
+    &:after {
+      display: block;
+      content:'';
+      width: 35px;
+      height:1px;
+      background: $l-maroon;
+      position:absolute;
+      left: 0;
+      bottom:0;
+    }
+    @media($dt) {
+      font-size:15px;
+      padding-bottom:21px;
+      margin-bottom:20px;
+    }
   }
 }
 .side-tag {
@@ -169,5 +207,10 @@ blockquote {
   transform: rotate(-90deg) translateY(-50%);
   @media($dt) {
     display:block;
+  }
+}
+.copy.smaller {
+  @media($dt) {
+    font-size:15px;
   }
 }

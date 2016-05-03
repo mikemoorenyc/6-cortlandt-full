@@ -1,0 +1,203 @@
+#residences {
+
+  .top-section {
+    position:relative;
+  }
+  .section {
+    margin: 0 10px;
+  }
+
+  //LIVING SPACES
+  #living-spaces {
+    padding: 50px 0 45px 0;
+    position: relative;
+    @media($dt) {
+      padding: 95px 0 165px 0;
+      max-width: 940px;
+      margin: 0 auto;
+      .section {
+        margin:0;
+        > h1, .copy {
+          margin-left: 405px;
+          width:395px;
+        }
+      }
+    }
+    @media($dt) {
+      img.limg {
+        position:absolute;
+        left: 75px;
+        bottom: 100px;
+        object-fit: cover;
+        object-position: bottom left;
+        width:150px;
+        height:225px;
+      }
+    }
+  }
+  #kitchens {
+    padding:55px 0 65px;
+    position:relative;
+    @media($dt) {
+      padding:0 0 90px 0;
+      width: 460px;
+      margin-left: 60px;
+      .section {
+        margin:0;
+        width:375px;
+      }
+      img.rimg {
+        position:absolute;
+        left: 680px;
+        bottom: 90px;
+        object-fit: cover;
+        object-position: bottom left;
+        width:240px;
+        height:360px;
+      }
+      div.title {
+        position:absolute;
+        top:40px;
+        left: 680px;
+      }
+    }
+  }
+
+  #handcrafted-elements {
+    @media($dt) {
+      display:none;
+    }
+    .section {
+      position:relative;
+    }
+    img.limg {
+      float:left;
+      width: percentage(130/300);
+    }
+    img.rimg {
+      clear: both;
+      float:right;
+      position: relative;
+      margin: -80px percentage(15/300) 0 0;
+      width: percentage(126/300);
+    }
+    .title {
+      position:absolute;
+      left: percentage(140/300);
+      top: 30px;
+      width: percentage(160/300);
+    }
+  }
+
+
+  #bath-section {
+    background: $grey-bg;
+    padding: 65px 0 40px;
+    @media($dt) {
+      padding: 90px 0;
+    }
+    .top {
+      > h1 {
+        width: 75%;
+        padding: 0 10px 30px 10px;
+        br {
+          display:none;
+        }
+        @media($dt) {
+          position: absolute;
+          left: percentage(750/1080);
+          top: 50%;
+          transform: translate(0,-50%);
+          padding: 0;
+          width: auto;
+          br {
+            display: block;
+          }
+        }
+      }
+      img {
+        @media($dt) {
+          margin: 0;
+          width: percentage(600/1080)
+        }
+      }
+    }
+    .bottom {
+      @media($dt) {
+        padding-top:110px;
+        .section {
+          width:percentage(388/1080);
+          float:left;
+          margin: 0 0 0 percentage(65/1080);
+        }
+      }
+      img.bottom-img {
+        margin-top: 30px;
+      }
+      @media($dt) {
+        img.bottom-img {
+          float:right;
+          margin:0;
+          width:percentage(435/1080);
+        }
+      }
+    }
+    @media($dt) {
+      .top, .bottom {
+        margin: 0 percentage(60/1200);
+        position: relative;
+      }
+    }
+  }
+
+  #master-bedrooms {
+    padding: 40px 0;
+    position: relative;
+    @media($dt) {
+      padding: 90px 0 0px;
+      > img {
+        float:right;
+        width: percentage(714/1200);
+        margin: 0;
+      }
+      .section {
+        text-align: right;
+        position: absolute;
+        bottom: 0px;
+        right: percentage(770/1200);
+        padding: 0;
+        width: percentage(280/1200);
+        h2.h-style {
+          &:after {
+            left:auto;
+            right: 0;
+          }
+        }
+      }
+    }
+    .section > h1 {
+      margin-top: 40px;
+    }
+  }
+  #home-office {
+    padding: 0 0 60px 0;
+    @media($dt) {
+      position: relative;
+      padding: 140px 0;
+      img {
+        margin-left: percentage(205/1200);
+        width:percentage(335/1200);
+      }
+      .section {
+        margin-left: percentage(205/1200);
+        width:percentage(305/1200);
+      }
+      h1 {
+        position: absolute;
+        left:percentage(740/1200);
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}

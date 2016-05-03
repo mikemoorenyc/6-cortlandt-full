@@ -23,4 +23,19 @@ function runnerbuilding() {
 
     return false;
   });
+
+  $('a.go-down').on('click',function(){
+    var parent = $(this).closest('#home-header');
+
+    $('html,body').animate({scrollTop:($(parent).next().offset().top-$('header').height())},250)
+    return false;
+  });
+
+  //HISTORY list
+
+  $('#history-list li.even').each(function(){
+    if($(window).width() >= 1000) {
+      $(this).find('.copy').after($(this).find('.aside'));
+    }
+  });
 }

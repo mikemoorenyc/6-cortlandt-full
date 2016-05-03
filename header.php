@@ -134,7 +134,7 @@ if(!empty($headerGal)) {
       <div class="container">
         <?php
         foreach($headerGal as $hg) {
-          $bigimg = wp_get_attachment_image_src($hg['image'], 'fake-full');
+          $bigimg = wp_get_attachment_image_src($hg['image'], 'fixed-1200');
           $smimg = wp_get_attachment_image_src($hg['image'], 'medium');
           $alt = get_the_title($hg['image']);
           if(!empty($hg['caption'])) {

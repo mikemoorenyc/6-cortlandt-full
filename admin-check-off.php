@@ -72,7 +72,7 @@ function userhide() {
           display: none !important;
         }
 
-        #adminmenu > li#toplevel_page_ninja-forms, #adminmenu > li#menu-posts-press {
+        #adminmenu > li#toplevel_page_ninja-forms, #adminmenu > li#menu-posts-press, #adminmenu > li#menu-pages {
           display:block !important;
         }
         #wpadminbar > a.screen-reader-shortcut {

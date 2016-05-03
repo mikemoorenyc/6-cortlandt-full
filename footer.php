@@ -24,7 +24,7 @@
       ?>
     </div>
     <div class="disclaimer">
-      <a href="#" class="legal">LEGAL</a>
+      <a href="#" class="legal" target="_blank">LEGAL</a>
     </div>
   </div>
 </div>

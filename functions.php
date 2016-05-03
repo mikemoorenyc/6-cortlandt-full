@@ -3,8 +3,8 @@ add_theme_support( 'menus' );
 
 //$siteDir = '/wp-content/themes/w25th-build';
 add_post_type_support('page', 'excerpt');
-add_image_size ( 'fake-full', 2000 , 2000 , false ) ;
-
+//add_image_size ( 'fake-full', 2000 , 2000 , false ) ;
+add_image_size ( 'fixed-1200', 1200 , 9999 , false ) ;
 // Custom functions
 
 // Tidy up the <head> a little. Full reference of things you can show/remove is here: http://rjpargeter.com/2009/09/removing-wordpress-wp_head-elements/

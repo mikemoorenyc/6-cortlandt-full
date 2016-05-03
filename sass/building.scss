@@ -153,6 +153,11 @@
       color:$main-color;
       padding-bottom: 16px;
       margin-bottom: 15px;
+      @media($dt) {
+        font-size:15px;
+        padding-bottom:20px;
+        margin-bottom:35px;
+      }
       &:after {
         display: block;
         content:'';
@@ -169,13 +174,25 @@
       margin-top: 15px;
       border: 1px solid $l-maroon;
       font-size:12px;
-      color:#9d9c9c;
+      color:$d-grey;
       line-height: 28px;
       padding: 0 8px;
+      @media($dt) {
+        line-height: 18px;
+        margin-top: 30px;
+        padding: 0 5px;
+        font-size: 10px;
+      }
+    }
+    .copy {
+      @media($dt) {
+        font-size:15px;
+      }
     }
     .copy-box {
       overflow:hidden;
       transition: all .25s;
+
       &.__opened {
         max-height:none !important;
         .bottom {
@@ -188,4 +205,84 @@
     }
   }
 
+}
+
+
+#history-section {
+  background: $grey-bg;
+}
+
+#history-list {
+  $h-dt-list: 1200px - (110*2);
+  @media($dt) {
+    max-width: $h-dt-list;
+    margin: 0 auto;
+  }
+  > li {
+    padding: 60px 10px 0 10px;
+    @media($dt) {
+      letter-spacing: -4px;
+      padding: 115px 0 0 0;
+      > * {
+        display:inline-block;
+        vertical-align: middle;
+        letter-spacing: normal;
+      }
+    }
+    &:last-child {
+      padding-bottom: 60px;
+      @media($dt) {
+        padding-bottom: 115px;
+      }
+    }
+    .aside {
+      padding-bottom:15px;
+      h2 {
+        width: 75%;
+        @media($dt) {
+          padding-left:20px;
+        }
+      }
+      img {
+        max-width: percentage(290/300);
+        &.portrait {
+          max-width: percentage(156/300);
+        }
+      }
+      .side-copy {
+        position:relative;
+        margin-top:12px;
+        padding-top: 11px;
+        font-size:10px;
+        line-height: 1;
+        &:before {
+          display:block;
+          content:'';
+          width: 25px;
+          height: 1px;
+          background: $l-maroon;
+          position: absolute;
+          left: 0;
+          top:0;
+        }
+      }
+    }
+    @media($dt) {
+      .copy {
+        width: 39.9%;
+      }
+      .aside {
+        width: 59.9%;
+        padding-right:80px;
+        padding-bottom:0;
+        img.portrait {
+          margin: 0;
+        }
+      }
+      &.even .aside{
+        padding-right: 0;
+        padding-left: 80px;
+      }
+    }
+  }
 }

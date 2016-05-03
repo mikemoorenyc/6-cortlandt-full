@@ -55,7 +55,7 @@ $introimg = $introimg[0];
 </div>
 
 
-<div id="amenities-section">
+<div id="amenities-section" data-anchor="amenities">
   <?php
   $amenintro = get_post_meta( $post->ID, 'amenties-intro', true );
   $amenintro = $amenintro[0];
@@ -130,6 +130,82 @@ $introimg = $introimg[0];
 
 
   </ul>
+
+</div>
+
+<div id="history-section" data-anchor="history">
+
+  <div class="hero">
+      <?php
+      $hishero = get_post_meta( $post->ID, 'history-hero-image', true );
+      $hishero = $hishero[0];
+      $introimg = wp_get_attachment_image_src($hishero['image'], 'fixed-1200', true);
+      $introimg = $introimg[0];
+
+
+      ?>
+      <img src="<?php echo $introimg;?>" alt="History" />
+  </div>
+  <ul id="history-list" class="clearfix no-style">
+  <?php
+$hislist = get_post_meta( $post->ID, 'history-items', true );
+$looper = 0;
+foreach($hislist as $hl) {
+  if ($looper % 2 == 0) {
+    $sideClass = 'even';
+  } else {
+    $sideClass = 'odd';
+  }
+  ?>
+  <li class="<?php echo $sideClass;?>" data-side="<?php echo $sideClass;?>">
+    <div class="aside">
+      <div class="inner">
+        <?php
+        if(empty($hl['image'])) {
+          ?>
+          <h2 class="h-style"><?php echo $hl['side-copy'];?></h2>
+          <?php
+        } else {
+          $img = wp_get_attachment_image_src($hl['image'], 'medium', true);
+          $imgSrc = $img[0];
+
+          if($img[1] <= $img[2]) {
+            $portraitClass = 'portrait';
+          }
+          ?>
+          <img src="<?php echo $imgSrc;?>" class="<?php echo $portraitClass;?>" alt="<?php echo $hl['side-copy'];?>" />
+          <div class="side-copy"><?php echo $hl['side-copy'];?></div>
+          <?php
+
+
+        }
+
+
+
+        ?>
+
+      </div>
+    </div>
+
+    <div class="copy">
+      <?php echo $hl['copy'];?>
+    </div>
+
+
+
+  </li>
+
+
+  <?php
+
+$looper++;
+}
+
+
+
+  ?>
+
+</ul>
 
 </div>
 
