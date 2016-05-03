@@ -84,7 +84,7 @@ include 'admin-check-off.php';
 
 include 'press-section/main-include.php';
 
-include 'map-component/main-include.php';
+// include 'map-component/main-include.php';
 include 'login-styling.php';
 include 'map-upload.php';
 //include 'file-repo/main-include.php';

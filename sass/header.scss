@@ -8,7 +8,7 @@ header{
   background:white;
   height:67px;
   z-index: 9999;
-  @media(min-width:1000px) {
+  @media(min-width:1000px) and (min-height: 800px) {
     max-width:1200px;
     height:114px;
   }
@@ -26,7 +26,7 @@ header{
       height:43px;
       background: url(../assets/imgs/logo.svg);
       background-size:100% 100%;
-      @media($dt) {
+      @media($dt) and (min-height: 800px){
         width:161px;
         height: 62px;
 
@@ -77,13 +77,20 @@ header{
       transform: translate(-50%,-50%);
       width: percentage(172/266);
       text-align: right;
-      > a {
-        display:block;
-        color: $grey;
-        padding-top: 22px;
-        text-decoration: none;
+      > div.link {
+        a {
+          display:block;
+          color: $grey;
+          padding-top: 22px;
+          text-decoration: none;
+        }
+        .sub-nav {
+          display:none;
+        }
         &:first-child {
-          padding-top:0;
+          a {
+            padding-top:0;
+          }
         }
       }
     }
@@ -118,14 +125,35 @@ header{
         position:static;
         width: auto;
         transform: none;
-        > a {
+        > div.link {
           float:left;
-          padding: 50px 0 0 0 !important;
-          color:$main-color;
-          font-size:12px;
+          padding: 20px 0 0 0 !important;
           margin-left:25px;
-          &:hover, &.__active {
-            color:$b-maroon;
+          position:relative;
+          text-align: left;
+
+          @media(min-height:800px) {
+            padding: 50px 0 0 0 !important;
+          }
+          a {
+            color:$main-color;
+            font-size:12px;
+
+            padding: 0 !important;
+            &:hover, &.__active {
+              color:$b-maroon;
+              + .sub-nav {
+                display:block;
+                position:absolute;
+                left: 0;
+                top: 30px;
+                white-space: nowrap;
+                button {
+                  margin-right:5px;
+                  cursor: pointer;
+                }
+              }
+            }
           }
         }
       }

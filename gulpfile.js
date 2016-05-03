@@ -25,8 +25,7 @@ var uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint');
 
 //IMAGE PROCESSING
-var pngcrush = require('imagemin-pngcrush'),
-    svgstore = require('gulp-svgstore'),
+var svgstore = require('gulp-svgstore'),
     imagemin = require('gulp-imagemin');
 
 //Generic sass Processor
@@ -62,7 +61,7 @@ gulp.task('sass', function () {
 //JS TASK
 gulp.task('js', function () {
   jsProcessor([ 'js/plugins/*.js', 'js/site.js', 'js/modules/*.js'], '../'+buildDir+'/js', 'main.js');
-  
+
 });
 
 //JS LINTING
@@ -91,7 +90,7 @@ gulp.task('svgstore', function () {
 gulp.task('imgmin', function () {
   gulp.src('assets/imgs/**/*')
     .pipe(changed('../'+buildDir+'/assets/imgs'))
-    .pipe(imagemin({interlaced: true, progressive: true,svgoPlugins: [{removeViewBox: false}],use: [pngcrush()]}))
+    .pipe(imagemin({interlaced: true, progressive: true,svgoPlugins: [{removeViewBox: false}],use: []}))
     .pipe(gulp.dest('../'+buildDir+'/assets/imgs'));
 });
 

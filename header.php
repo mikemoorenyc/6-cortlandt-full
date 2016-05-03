@@ -79,7 +79,8 @@ foreach($pages as $p) {
   array_push($navItems,array(
     'title' => $p->post_title,
     'url' => get_permalink($p),
-    'class' => $p->post_name
+    'class' => $p->post_name,
+    'id' => $p->ID
   ));
 }
 

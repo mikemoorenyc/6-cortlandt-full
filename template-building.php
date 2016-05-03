@@ -104,8 +104,13 @@ $introimg = $introimg[0];
             }
           }
           ?>
-          <div class="intro"><?php echo $firstSection;?></div>
-          <div class="bottom"><?php echo $moreSection;?></div>
+          <div class="copy-box">
+            <div class="inner">
+              <span class="intro"><?php echo $firstSection;?></span>
+              <span class="bottom"><?php echo $moreSection;?></span>
+            </div>
+          </div>
+
           <a href="#" class="read-more h-style">Read More</a>
 
           <?php
