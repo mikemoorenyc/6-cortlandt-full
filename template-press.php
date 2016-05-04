@@ -115,20 +115,28 @@ endwhile;
 
 ?>
 </ul>
-<div class="more-posts-container">
+
   <?php
 
   $older = get_next_posts_link();
 
   if(!empty($older)) {
     ?>
+    <div class="more-posts-container">
     <a class="more-posts full-button h-style" href="<?php echo $homeURL.'/presspage/page/'.($paged+1).'/';?>">More Posts</a>
+    </div>
+    <?php
+  } else {
+    ?>
+    <div class="more-posts-container empty">
+
+    </div>
     <?php
   }
 
 
    ?>
-</div>
+
 
 </div>
 <?php include 'footer.php'; ?>

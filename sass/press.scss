@@ -47,5 +47,8 @@
     margin-top:-20px;
     padding-bottom:60px;
     text-align: center;
+    &.empty {
+      display:none;
+    }
   }
 }

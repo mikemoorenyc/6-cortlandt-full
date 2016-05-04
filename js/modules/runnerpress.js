@@ -12,8 +12,10 @@ function runnerpresspage() {
       dataType: 'html'
     })
     .done(function(data){
-      $('.more-posts-container').empty().append($(data).find('.more-posts-container').html());
+
       $('#press-list').append($(data).find('#press-list').html());
+      $('.more-posts-container').remove();
+      $('#press-section').append($(data).find('.more-posts-container')[0]);
 
     });
     return false;
