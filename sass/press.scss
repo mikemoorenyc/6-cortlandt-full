@@ -1,0 +1,51 @@
+#press-section {
+  background: $grey-bg;
+  padding: 45px percentage(10/320) 0;
+  > h1 {
+    position: relative;
+    margin-bottom: 40px;
+    padding-bottom: 16px;
+    &:after {
+      width: 35px;
+      height: 1px;
+      background:$l-maroon;
+      display: block;
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom:0;
+    }
+  }
+  #press-list {
+    > li {
+      position: relative;
+      padding-bottom: 80px;
+      cursor: pointer;
+      a.cover {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width:100%;
+        height: 100%;
+      }
+      .poster {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 100%;
+        background-size: cover;
+        background-position: center center;
+        margin-bottom: 20px;
+      }
+      .excerpt {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .more-posts-container {
+    position: relative;
+    margin-top:-20px;
+    padding-bottom:60px;
+    text-align: center;
+  }
+}

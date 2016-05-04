@@ -3,7 +3,7 @@
 function press_ui_content() {
 
   	global $post;
-    if($post->post_type !== 'press') {
+    if($post->post_type !== 'pressitem') {
       return;
     }
 

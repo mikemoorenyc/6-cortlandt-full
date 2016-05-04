@@ -25,8 +25,18 @@ $propargs = array(
       'title'
     )
   );
-register_post_type( 'press', $propargs );
-
+register_post_type( 'pressitem', $propargs );
+if ( ! function_exists( 'unregister_post_type' ) ) :
+function unregister_post_type( $post_type ) {
+    global $wp_post_types;
+    if ( isset( $wp_post_types[ $post_type ] ) ) {
+        unset( $wp_post_types[ $post_type ] );
+        return true;
+    }
+    return false;
+}
+endif;
+unregister_post_type('press');
 
 
 }
@@ -36,7 +46,7 @@ add_action( 'init', 'post_types_init' );
 //ADD react
 function add_file_header_scripts($hook) {
   global $post;
-  if(get_post_type($post) != 'press') {
+  if(get_post_type($post) != 'pressitem') {
     return;
   }
   if ( !('post.php' == $hook || 'post-new.php' == $hook) ) {

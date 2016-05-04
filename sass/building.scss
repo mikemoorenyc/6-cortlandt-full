@@ -170,18 +170,10 @@
       }
     }
     a.read-more {
-      display:inline-block;
+      
       margin-top: 15px;
-      border: 1px solid $l-maroon;
-      font-size:12px;
-      color:$d-grey;
-      line-height: 28px;
-      padding: 0 8px;
       @media($dt) {
-        line-height: 18px;
         margin-top: 30px;
-        padding: 0 5px;
-        font-size: 10px;
       }
     }
     .copy {

@@ -6,20 +6,58 @@
 
 
 <?php include 'header.php'; ?>
-
+<div id="press-section">
+  <h1 class="h-style"><?php echo apply_filters('the_excerpt', get_post_field('post_excerpt', $post_id));?></h1>
+    <ul id="press-list" class="no-style">
 <?php
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(
-    'post_type' 		=> 'press',
-    'posts_per_page' => -1
+    'post_type' 		=> 'pressitem',
+    'posts_per_page' => 1,
+    'paged' => $paged
   );
-$files_in_cat_query = new WP_Query($args);
-if ( $files_in_cat_query->have_posts() ) {
-$press = $files_in_cat_query->get_posts();
-  ?>
-  <ul id="press-list" class="no-style">
+query_posts($args);
+while ( have_posts() ) : the_post();
+  $obj= json_decode(get_post_meta(get_the_ID(), 'press_data', true));
+  if($obj->linkType == 'external') {
+    $url = $obj->linkURL;
+  } else {
+    $url = wp_get_attachment_url( $obj->linkID, 'full' );
+  }
+  if(empty($obj->imgID)) {
+    $imgURL = $siteDir.'/assets/imgs/press-fallback.jpg';
+  } else {
+    $imgURL = wp_get_attachment_image_src($obj->imgID, 'medium', false);
+    $imgURL = $imgURL[0];
+  }
+  //SPLIT THE TITLE
+  $tl = strlen(get_the_title().' ');
+  $smaller = floor($tl/2);
+  $bigger = ceil($tl/2);
+  $first = '';
+  $last = '';
 
-    <?php
-    foreach($press as $p) {
+  $ex = explode(' ',get_the_title());
+  foreach($ex as $e) {
+    if(strlen($first) <= $bigger) {
+      $first .= $e.' ';
+    } else {
+      $last .= $e.' ';
+    }
+  }
+  ?>
+  <li class="press-item" >
+    <div class="poster" style="background-image:url(<?php echo $imgURL;?>);"></div>
+    <h2 class="h-style liner"><?php echo $first.'<br/>'.$last;?></h2>
+    <div class="excerpt">
+      <?php echo $obj->excerpt;?>
+    </div>
+    <span class="read-more h-style">Read More</span>
+    <a href="<?php echo $url;?>" target="_blank" class="cover"></a>
+
+  </li>
+  <?php
+    /*
       $obj= json_decode(get_post_meta($p->ID, 'press_data', true));
       //GET THE LINK
       if($obj->linkType == 'external') {
@@ -36,28 +74,61 @@ $press = $files_in_cat_query->get_posts();
       ?>
       <li class="press-item" >
 
-        <div class="poster" style="width:200px; height:200px; background-image:url(<?php echo $imgURL;?>);"></div>
+        <div class="poster" style="background-image:url(<?php echo $imgURL;?>);"></div>
 
+        <?php
+        //Split Title
+        $tl = strlen($p->post_title.' ');
+        $smaller = floor($tl/2);
+        $bigger = ceil($tl/2);
+        $first = '';
+        $last = '';
 
-        <h2><?php echo $p->post_title;?></h2>
-        <p class="excerpt">
+        $ex = explode(' ',$p->post_title);
+        foreach($ex as $e) {
+          if(strlen($first) <= $bigger) {
+            $first .= $e.' ';
+          } else {
+            $last .= $e.' ';
+          }
+        }
+
+         ?>
+        <h2 class="h-style liner"><?php echo $first.'<br/>'.$last;?></h2>
+        <div class="excerpt">
           <?php echo $obj->excerpt;?>
-        </p>
-        <span class="read-more">Read More</span>
+        </div>
+        <span class="read-more h-style">Read More</span>
         <a href="<?php echo $url;?>" target="_blank" class="cover"></a>
       </li>
 
       <?php
-    }
+      */
 
-    ?>
-
-  </ul>
-  <?php
-
-
-}
 
 ?>
 
+
+<?Php
+endwhile;
+
+
+?>
+</ul>
+<div class="more-posts-container">
+  <?php
+
+  $older = get_next_posts_link();
+
+  if(!empty($older)) {
+    ?>
+    <a class="more-posts full-button h-style" href="<?php echo $homeURL.'/presspage/page/'.($paged+1).'/';?>">More Posts</a>
+    <?php
+  }
+
+
+   ?>
+</div>
+
+</div>
 <?php include 'footer.php'; ?>

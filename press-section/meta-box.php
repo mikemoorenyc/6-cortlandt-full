@@ -4,7 +4,7 @@ function file_box() {
 			'press_box',
 			"Press Entry",
 			'press_box_callback',
-			'press',
+			'pressitem',
       'normal'
 		);
 }
