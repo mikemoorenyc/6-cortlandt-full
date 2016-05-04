@@ -6,15 +6,16 @@
 
 
 <?php include 'header.php'; ?>
-<table >
-<thead>
-  <tr>
+<div id="avail-container">
+<table id="avail-list" class="no-style clearfix" >
+<tbody>
+  <tr class="header clearfix">
     <td class="name">
       Unit
     </td>
-    <td class="bedrooms">
+    <td  class="bedrooms">
       Bedrooms
-    </td>
+    </td >
     <td class="bathrooms">
       Bathrooms
     </td>
@@ -27,12 +28,16 @@
     <td class="price">
       Price
     </td>
+    <td class="charges">
+      Common Charges
+    </td>
+    <td class="taxes">
+      Taxes
+    </td>
     <td class="download">
       Floor Plan
     </td>
   </tr>
-</thead>
-<tbody>
 <?php
 $avail = get_post_meta( $post->ID, 'avail-list', true );
 
@@ -44,7 +49,7 @@ function makeList($a) {
     return;
   }
   ?>
-  <tr>
+  <tr class="item clearfix">
     <td class="name">
       <?php echo $a['unit'];?>
     </td>
@@ -63,11 +68,21 @@ function makeList($a) {
     <td class="price">
       <?php echo numberer($a['price'], '$');?>
     </td>
+    <td class="charges">
+      <?php echo numberer($a['common-charges'], '$');?>
+    </td>
+    <td class="taxes">
+      <?php echo numberer($a['taxes'], '$');?>
+    </td>
     <td class="download">
       <?php
         if($a['floor-plan'] != false) {
           ?>
-          <a href="<?php echo wp_get_attachment_url($a['floor-plan'], 'full' );?>" target="_blank">Download Floor Plan</a>
+          <a href="<?php echo wp_get_attachment_url($a['floor-plan'], 'full' );?>" target="_blank">
+            <svg>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#download-arrow"></use>
+            </svg>
+          </a>
           <?php
         } else {
           echo '&ndash;';
@@ -97,6 +112,6 @@ function dasher($d) {
 ?>
 </tbody>
 </table>
-
+</div>
 
 <?php include 'footer.php'; ?>

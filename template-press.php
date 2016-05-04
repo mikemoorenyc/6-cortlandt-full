@@ -13,7 +13,7 @@
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $args = array(
     'post_type' 		=> 'pressitem',
-    'posts_per_page' => 1,
+    'posts_per_page' => 18,
     'paged' => $paged
   );
 query_posts($args);
@@ -46,67 +46,19 @@ while ( have_posts() ) : the_post();
     }
   }
   ?>
+  <!--
+  <?php echo $first.'<br/>'.$last;?>
+-->
   <li class="press-item" >
     <div class="poster" style="background-image:url(<?php echo $imgURL;?>);"></div>
-    <h2 class="h-style liner"><?php echo $first.'<br/>'.$last;?></h2>
-    <div class="excerpt">
+    <h2 class="h-style liner"><?php echo get_the_title();?></h2>
+    <div class="excerpt copy smaller">
       <?php echo $obj->excerpt;?>
     </div>
     <span class="read-more h-style">Read More</span>
     <a href="<?php echo $url;?>" target="_blank" class="cover"></a>
 
   </li>
-  <?php
-    /*
-      $obj= json_decode(get_post_meta($p->ID, 'press_data', true));
-      //GET THE LINK
-      if($obj->linkType == 'external') {
-        $url = $obj->linkURL;
-      } else {
-        $url = wp_get_attachment_url( $obj->linkID, 'full' );
-      }
-      if(empty($obj->imgID)) {
-        $imgURL = $siteDir.'/assets/imgs/press-fallback.jpg';
-      } else {
-        $imgURL = wp_get_attachment_image_src($obj->imgID, 'medium', false);
-        $imgURL = $imgURL[0];
-      }
-      ?>
-      <li class="press-item" >
-
-        <div class="poster" style="background-image:url(<?php echo $imgURL;?>);"></div>
-
-        <?php
-        //Split Title
-        $tl = strlen($p->post_title.' ');
-        $smaller = floor($tl/2);
-        $bigger = ceil($tl/2);
-        $first = '';
-        $last = '';
-
-        $ex = explode(' ',$p->post_title);
-        foreach($ex as $e) {
-          if(strlen($first) <= $bigger) {
-            $first .= $e.' ';
-          } else {
-            $last .= $e.' ';
-          }
-        }
-
-         ?>
-        <h2 class="h-style liner"><?php echo $first.'<br/>'.$last;?></h2>
-        <div class="excerpt">
-          <?php echo $obj->excerpt;?>
-        </div>
-        <span class="read-more h-style">Read More</span>
-        <a href="<?php echo $url;?>" target="_blank" class="cover"></a>
-      </li>
-
-      <?php
-      */
-
-
-?>
 
 
 <?Php
@@ -123,7 +75,7 @@ endwhile;
   if(!empty($older)) {
     ?>
     <div class="more-posts-container">
-    <a class="more-posts full-button h-style" href="<?php echo $homeURL.'/presspage/page/'.($paged+1).'/';?>">More Posts</a>
+    <a class="more-posts full-button h-style" href="<?php echo $homeURL.'/'.$slug.'/page/'.($paged+1).'/';?>">Load More Press</a>
     </div>
     <?php
   } else {
@@ -137,6 +89,6 @@ endwhile;
 
    ?>
 
-
+<div class="side-tag h-style">Highlights</div>
 </div>
 <?php include 'footer.php'; ?>

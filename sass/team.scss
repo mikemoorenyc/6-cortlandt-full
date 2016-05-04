@@ -1,0 +1,48 @@
+#team-section {
+  padding: 30px 0 15px 0;
+  position: relative;
+  @media($dt) {
+    padding: 120px 0 10px ;
+  }
+  #team-list {
+    @media($dt) {
+      margin: 0 auto;
+      width: (365px*2) + 40px;
+      letter-spacing: -4px;
+    }
+    > li {
+      width: 300px;
+      margin: 0 auto 45px auto;
+      position: relative;
+      @media($dt) {
+        margin: 0 0 65px 0;
+        display: inline-block;
+        vertical-align: top;
+        width: 49.9%;
+        letter-spacing: normal;
+        padding-left:20px;
+        &:nth-child(odd) {
+          padding: 0 20px 0 0;
+          text-align: right;
+          h1 {
+            &:after {
+              left: auto;
+              right:0;
+            }
+          }
+        }
+      }
+      .read-more {
+        margin-top: 15px;
+      }
+      .copy {
+        overflow:hidden;
+        height: 172px;
+        transition: height .25s;
+        &.all-content {
+          height: auto !important;
+        }
+      }
+    }
+  }
+}

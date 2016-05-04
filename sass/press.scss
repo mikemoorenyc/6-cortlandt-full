@@ -1,6 +1,12 @@
-#press-section {
+#app_wrap[data-slug="presspage"] {
   background: $grey-bg;
+}
+#press-section {
+
   padding: 45px percentage(10/320) 0;
+  @media($dt) {
+    padding: 90px percentage(100/1200) 0;
+  }
   > h1 {
     position: relative;
     margin-bottom: 40px;
@@ -17,10 +23,19 @@
     }
   }
   #press-list {
+    @media($dt) {
+      margin-left: 90px;
+    }
     > li {
       position: relative;
       padding-bottom: 80px;
       cursor: pointer;
+      vertical-align: top;
+      @media($dt) {
+        display: inline-block;
+        width: 225px;
+        margin: 0 60px 0 0;
+      }
       a.cover {
         position: absolute;
         left: 0;
@@ -36,6 +51,10 @@
         background-size: cover;
         background-position: center center;
         margin-bottom: 20px;
+        @media($dt) {
+          padding: 0;
+          height: 265px;
+        }
       }
       .excerpt {
         margin-bottom: 20px;

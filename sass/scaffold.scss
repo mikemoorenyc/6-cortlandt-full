@@ -14,7 +14,7 @@ body {
   background: lighten(black,98%);
 
   font-weight: normal;
-  -webkit-font-smoothing: antialiased!important;
+  //-webkit-font-smoothing: antialiased!important;
   -webkit-text-size-adjust: none;
   @media($dt) {
     font-size:20px;
@@ -200,11 +200,10 @@ img.intro-img {
 .side-tag {
   display:none;
   position:absolute;
-  transform-origin: center right;
-  right: 25px;
+  right: -25px;
   top: 50%;
   font-size: 13px !important;
-  transform: rotate(-90deg) translateY(-50%);
+  transform: translateY(-50%) rotate(-90deg);
   @media($dt) {
     display:block;
   }
@@ -237,8 +236,12 @@ img.intro-img {
   color:$grey;
   background:#a48b9b;
   font-size:12px;
+  @media($dt) {
+    font-size: 15px;
+    line-height:40px;
+  }
   &.__loading {
-    opacity: 0.3;
+    opacity: 0.5;
     pointer-events: none;
   }
   &:hover {

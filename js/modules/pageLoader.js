@@ -5,8 +5,8 @@ function pageLoader(newSlug) {
 
   $('nav#main-navigation a').removeClass('__active');
   $('nav#main-navigation a[data-slug="'+newSlug+'"]').addClass('__active');
-
-  //SEND CURRENT STATE TO GOOGLE
+  $('#app_wrap').attr('data-slug', newSlug);
+    //SEND CURRENT STATE TO GOOGLE
   var currentURL = window.location.href ;
 
   if(typeof ga !=='undefined') {
