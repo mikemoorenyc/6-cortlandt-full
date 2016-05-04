@@ -11,7 +11,7 @@
 <tbody>
   <tr class="header clearfix">
     <td class="name">
-      Unit
+      Residence
     </td>
     <td  class="bedrooms">
       Bedrooms
@@ -85,7 +85,7 @@ function makeList($a) {
           </a>
           <?php
         } else {
-          echo '&ndash;';
+          echo '<span class="tag">&ndash;</span>';
         }
       ?>
     </td>

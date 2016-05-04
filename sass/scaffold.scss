@@ -40,7 +40,7 @@ button {
 // Links
 a {
   text-decoration: none;
-
+  color:$b-maroon;
   &:hover {
     //text-decoration: underline;
   }
@@ -240,7 +240,7 @@ img.intro-img {
     font-size: 15px;
     line-height:40px;
   }
-  &.__loading {
+  &.__loading, &[disabled] {
     opacity: 0.5;
     pointer-events: none;
   }
