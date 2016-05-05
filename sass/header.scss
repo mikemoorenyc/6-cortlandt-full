@@ -132,7 +132,7 @@ header{
         transform: none;
         > div.link {
           float:left;
-          padding: 20px 0 0 0 !important;
+          padding: 25px 0 0 0 !important;
           margin-left:25px;
           position:relative;
           text-align: left;
@@ -153,8 +153,11 @@ header{
                 display:block;
                 position:absolute;
                 left: 0;
-                bottom: -25px;
+                bottom: -20px;
                 white-space: nowrap;
+                @media(min-height:800px) {
+                  bottom:-25px;
+                }
                 button {
                   margin-right:25px;
                   font-size: 10px;

@@ -52,20 +52,36 @@ function runnercontact() {
     event.preventDefault();
     var theForm = $('.ninja-forms-form');
     var formData = $(theForm).serialize();
+    $('.submit-wrap input[type="submit"]').attr('disabled',true).val('Sending');
     $.ajax({
       type: 'POST',
       url: $(theForm).attr('action'),
       data: formData
     })
     .done(function(response) {
+      $('.submit-wrap input[type="submit"]').removeAttr('disabled').val('Submit');
+
+
       var thedata = jQuery.parseJSON( response);
-      console.log(thedata);
+  
+      if(thedata.success == false) {
+        alert('Please enter a valid email address');
+        $('input.email').addClass("errored");
+      } else {
+        alert('Thank you for your submission. We will get back to you shortly.');
+        $('.field-wrap input[type=text], textarea').val('');
+        $('.field-wrap').removeClass('errored');
+        $('input').removeClass("errored");
+      }
+      readyCheck();
 
 
     })
     .fail(function(data) {
-      alert('There was a problem saving your information. Please try again later.');
+      $('.submit-wrap input[type="submit"]').removeAttr('disabled').val('Submit');
 
+      alert('There was a problem saving your information. Please try again later.');
+      readyCheck();
     });
 
   });

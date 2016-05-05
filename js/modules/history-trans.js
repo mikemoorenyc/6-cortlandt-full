@@ -67,7 +67,7 @@ function theHistory() {
 
       //INITIATE LOADING ANIMATION
       $('html').addClass("__page-loading");
-
+      $('body').append('<div id="loader-bar"class="added"></div>');
       //$('html').addClass('__mobile-nav-closed').removeClass('__mobile-nav-opened');
 
       var loading = true;
@@ -83,7 +83,7 @@ function theHistory() {
 
 
       $('title').last().html(titleState);
-      $('#main-content-container').animate({opacity: 0}, 250, function(){
+      $('#app_wrap').animate({opacity: 0}, 250, function(){
         $("body, html").scrollTop(0);
         runner();
       });
@@ -127,7 +127,9 @@ function theHistory() {
             $('#main-content-container').html($(newStuff).html());
             $('#main-content-container').attr('data-slug', newSlug);
             $("body, html").scrollTop(0);
-            $('#main-content-container').animate({opacity:1}, 250);
+            $('#app_wrap').animate({opacity:1}, 250, function(){
+              $('#loader-bar').remove();
+            });
             //$('.page-content').velocity({opacity:1}, {duration: ts*1.5});
             pageLoader(newSlug);
 

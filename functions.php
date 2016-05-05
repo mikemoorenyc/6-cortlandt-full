@@ -57,7 +57,7 @@ function content_cleaner($content) {
 
 
 //ADD FOOTER COPY SETTING
-add_filter('admin_init', 'footer_copy_setting');
+//add_filter('admin_init', 'footer_copy_setting');
 
 function footer_copy_setting()
 {

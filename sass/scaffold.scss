@@ -200,10 +200,11 @@ img.intro-img {
 .side-tag {
   display:none;
   position:absolute;
-  right: -25px;
+  right: 30px;
   top: 50%;
   font-size: 13px !important;
-  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: right bottom;
+  transform: rotate(-90deg) translateX(50%);
   @media($dt) {
     display:block;
   }

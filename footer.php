@@ -24,7 +24,17 @@
       ?>
     </div>
     <div class="disclaimer">
-      <a href="#" class="legal" target="_blank">LEGAL</a>
+      <?php
+      $value = get_option( 'main_map_image', '' );
+
+      if(!empty($value)) {
+        ?>
+        <a href="<?php echo wp_get_attachment_url( $value );?>" class="legal" target="_blank">LEGAL</a>
+        <?php
+      }
+
+      ?>
+
     </div>
   </div>
 </div>
@@ -33,6 +43,17 @@
 
   <script>
   var phpvars_siteDir = '<?php echo $siteDir;?>';
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-69589906-1', 'auto');
+
+
   </script>
 
   <script src="<?php echo $siteDir;?>/js/main.js?v=<?php echo time();?>" ></script>

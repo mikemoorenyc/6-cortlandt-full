@@ -47,8 +47,9 @@
       text-transform: uppercase;
       letter-spacing: .2em;
 
-      @include text-overflow();
+
       @media($dt-max) {
+        @include text-overflow();
         display:block;
         float:left;
         width: 33.3%;

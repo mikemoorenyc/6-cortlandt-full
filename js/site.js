@@ -43,10 +43,14 @@ function siteInit() {
     $('html').toggleClass('__menu-opened');
   });
 
+  $('nav .link a').click(function(){
+    $('html').removeClass('__menu-opened');
+  });
 
 
 
-  //theHistory();
+
+  theHistory();
 
   //LOAD IN SVG
 

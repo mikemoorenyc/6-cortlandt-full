@@ -1,0 +1,75 @@
+#penthouse-top {
+  padding: 40px percentage(10/320);
+  @media($dt) {
+    $top-width: 1200px - (160*2);
+    width: $top-width;
+    margin: 0 auto;
+    padding: 80px ($top-width - 660px) 80px 0;
+  }
+  > h1 {
+    margin-bottom: 1em;
+    @media($dt) {
+      margin-bottom:1.5em;
+    }
+  }
+}
+#penthouse-img {
+  margin-bottom: 30px;
+  position: relative;
+  @media($dt) {
+    padding: 0 80px;
+    margin-bottom: 80px;
+  }
+}
+#penthouse-items {
+  padding: 0 percentage(10/320) 90px;
+  @media($dt) {
+    width: 980px;
+    margin: 0 auto;
+    padding: 0 0 90px 0;
+  }
+  > li {
+    position: relative;
+    padding-top: 30px;
+    margin-bottom: 75px;
+    @media($dt) {
+      padding: 0 0 0 295px;
+      margin-bottom: 80px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    img.icon {
+      position: absolute;
+      width: 52px;
+      height:60px;
+      top: 0;
+      right: 0;
+      @media($dt) {
+        right: auto;
+        left: 60px;
+        width:117px;
+        height:134px;
+      }
+    }
+    h2 {
+      padding-right: 70px;
+    }
+    .copy {
+      @media($dt) {
+        columns: 2;
+        column-gap: 40px;
+        p {
+          margin:0;
+        }
+      }
+    }
+    .read-more {
+      margin-top: 25px;
+      @media($dt) {
+        margin-top:35px;
+      }
+    }
+  }
+}

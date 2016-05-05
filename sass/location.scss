@@ -1,0 +1,20 @@
+#location-top {
+  padding: 30px percentage(10/320) 45px;
+  @media($dt) {
+    margin:120px auto;
+    padding: 0;
+    width: 810px;
+  }
+  > h1 {
+    margin-bottom: 1em;
+    @media($dt) {
+      margin-bottom:1.5em;
+    }
+  }
+  .copy {
+    @media($dt) {
+      columns: 2;
+      column-gap: 60px;
+    }
+  }
+}
