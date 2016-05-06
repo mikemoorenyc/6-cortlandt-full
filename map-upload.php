@@ -3,13 +3,13 @@
 add_filter('admin_init', 'map_image_setting');
 
 function map_image_setting() {
-  wp_enqueue_media();
+
   register_setting('general', 'main_map_image', 'esc_attr');
   add_settings_field('main_map_image', '<label for="main_map_image">'.__('Legal PDF' , 'main_map_image' ).'</label>' , 'map_image_selector', 'general');
 }
 
 function map_image_selector() {
-
+    wp_enqueue_media();
   $value = get_option( 'main_map_image', '' );
   if(empty($value)) {
     $verb = 'Upload';

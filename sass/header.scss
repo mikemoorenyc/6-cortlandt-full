@@ -1,17 +1,19 @@
-header{
-  position:fixed;
-  left: 0%;
-  width:100%;
-
+#head-wrap {
+  position: fixed;
+  left: 0;
   top: 0;
-  width:100%;
+  width: 100%;
+  z-index: 9999;
+}
+header{
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
   background:white;
   height:67px;
-  z-index: 9999;
+
   @media(min-width:1000px) {
     max-width:1200px;
-    transform: translate(-50%);
-    left: 50%;
   }
   @media(min-width:1000px) and (min-height: 800px) {
 
@@ -53,14 +55,15 @@ header{
   }
   nav {
     position:fixed;
-    right: -100%;
+    right: 0;
+    transform: translateX(calc(100% + 100px));
     top: 0;
     height: 100vh;
     width: calc(100% - 54px);
     background: #7d4f5f;
-    transition: right .25s;
+    transition: transform .25s;
     html.__menu-opened & {
-      right: 0;
+      transform: translateX(0);
     }
     &:before {
       display:block;
@@ -126,6 +129,7 @@ header{
       right: percentage(35/1200);;
       height: auto;
       width: auto;
+      transform: none !important;
       .menu-list {
         position:static;
         width: auto;

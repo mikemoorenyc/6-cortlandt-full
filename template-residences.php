@@ -106,7 +106,7 @@
 
 </div>
 
-<div id="master-bedrooms" data-anchor="bedrooms" class="clearfix">
+<div id="master-bedrooms" data-anchor="master-bedroom" class="clearfix">
 <?php
 $ls = get_post_meta( $post->ID, 'master-bedrooms', true );
 $ls = $ls[0];

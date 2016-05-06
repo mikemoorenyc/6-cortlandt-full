@@ -4,13 +4,16 @@ function runnerbuilding() {
   }
 
   $('#amen-list .copy-box').each(function(){
+    /*
     var mh = $(this).find('.intro').height();
     $(this).attr('data-min', (mh+5) ).attr('data-max', $(this).find('.inner').height()+5);
     $(this).css({
       'height': (mh+5)+'px',
     });
+    */
   });
   $('#amen-list .read-more').on('click',function(){
+    /*
     if(!$(this).prev().hasClass('__opened')) {
       var nh = $(this).prev().attr('data-max');
       $(this).prev().addClass('__opened').height(nh);
@@ -20,6 +23,17 @@ function runnerbuilding() {
       $(this).prev().removeClass('__opened').height(nh);
       $(this).text('Read More');
     }
+    */
+    if(!$(this).hasClass('__opened')) {
+      var copy = $(this).prev();
+      var h = $(copy).find('.inner').height();
+      $(copy).height(h);
+      $(this).text('Read Less').addClass('__opened');
+    } else {
+      $(this).text('Read More').removeClass('__opened');
+      $(this).prev().removeAttr('style');
+    }
+
 
     return false;
   });

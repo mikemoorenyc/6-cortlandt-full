@@ -32,7 +32,7 @@ $catArray = array();
 foreach ($mimgs as $i) {
   $name = $i['category'];
   $slug = slugMaker($name);
-  $imgURL = wp_get_attachment_image_src($i['map-image'], 'fixed-1200');
+  $imgURL = wp_get_attachment_image_src($i['image'], 'fixed-1200');
   $imgURL = $imgURL[0];
   $inArray = false;
   foreach($catArray as $c) {
@@ -63,7 +63,7 @@ foreach($catArray as $c) {
     if($slug == $c['slug']) {
       //THE POINT IS IN THE ARRAY
       $point = array(
-        'name' => $i['name'],
+        'name' => $i['title'],
         'number' => $iterator
       );
       array_push($pointArray, $point);
@@ -78,12 +78,21 @@ foreach($catArray as $c) {
 
 ?>
 <div id="map-apparatus">
+  <?php
+  $contactcopy = get_post_meta( $post->ID, 'blank-map-image', true );
+  $blank = $contactcopy[0];
+  $blank = wp_get_attachment_image_src($blank['image'], 'fixed-1200');
+  $blank = $blank[0];
+  ?>
   <div id="map-image-container">
+    <img src="<?php echo $blank;?>" alt="<?php echo $siteTitle;?>" class="blank"/>
   <?php
   $looper = 0;
   foreach($catArray as $c) {
     if($looper < 1) {
-      $active = "__active";
+      $active = "__activated";
+    } else {
+      $active = '';
     }
     ?>
   <img class="<?php echo $active;?>" src="<?php echo $c['url'];?>" alt="<?php echo $c['name'];?>" data-slug="<?php echo $c['slug'];?>" />
@@ -96,14 +105,16 @@ foreach($catArray as $c) {
     <ul id="map-list" class="clearfix no-style">
       <?php
       $looper = 0;
+      $activated = '__activated';
       foreach($catArray as $c) {
-        if ($looper < 1) {
-          $activated = '__activated';
-        }
         ?>
         <li data-slug="<?php echo $c['slug'];?>" class="<?php echo $activated;?>">
-          <h2><?php echo $c['name'];?></h2>
-          <ul class="points no-style clearfix">
+          <h2 class="h-style"><?php echo $c['name'];?>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 10">
+              <polygon class="cls-1" points="6 10 0 0 12 0 6 10"/>
+            </svg>
+          </h2>
+          <ul class="point-list no-style clearfix">
             <?php
             foreach($c['points'] as $p) {
               ?>
@@ -120,6 +131,7 @@ foreach($catArray as $c) {
 
         </li>
         <?php
+        $activated = '';
       }
       ?>
 
@@ -134,12 +146,14 @@ foreach($catArray as $c) {
 <div id="mobile-map-key">
   <div class="cats">
     <?php
+    $activated = '__activated';
     foreach($catArray as $c) {
       ?>
-      <button data-slug="<?php echo $c['slug'];?>">
+      <button class="h-style <?php echo $activated;?>" data-slug="<?php echo $c['slug'];?>">
         <?php echo $c['name'];?>
       </button>
       <?php
+      $activated = '';
     }
     ?>
   </div>

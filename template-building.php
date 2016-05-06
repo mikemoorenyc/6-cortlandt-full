@@ -90,31 +90,26 @@ $introimg = $introimg[0];
       </h1>
       <div class="copy">
         <?php
-        if(strlen($a['copy']) < 125) {
-          echo $a['copy'];
+        if(strlen($a['copy']) < 145) {
+
+          $noheight = 'all-content';
+          $readmore = '';
         } else {
-          $ex = explode(" ", $a['copy']);
-          $firstSection ='';
-          $moreSection = '';
-          foreach($ex as $e) {
-            if(strlen($firstSection.$e.' ') < 125) {
-              $firstSection .= $e.' ';
-            } else{
-              $moreSection .= $e.' ';
-            }
+          $noheight = '';
+          $readmore = '<a href="#" class="read-more h-style">Read More</a>';
+
           }
           ?>
-          <div class="copy-box">
+          <div class="copy-box <?php echo $noheight;?>">
             <div class="inner">
-              <span class="intro"><?php echo $firstSection;?></span>
-              <span class="bottom"><?php echo $moreSection;?></span>
+              <?php echo $a['copy'];?>
             </div>
           </div>
 
-          <a href="#" class="read-more h-style">Read More</a>
+          <?php echo $readmore;?>
 
           <?php
-        }
+
 
 
 

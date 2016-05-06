@@ -21,7 +21,7 @@
     left: 0;
     top: 0;
     background: $l-maroon;
-    animation: loadingBar .5s infinite linear;
+    animation: loadingBar 1s infinite linear;
     transform-origin: left center;
   }
   @media($dt) {

@@ -25,12 +25,10 @@
     </div>
     <div class="disclaimer">
       <?php
-      $value = get_option( 'main_map_image', '' );
+      $value = get_option( 'footer_copy', '' );
 
       if(!empty($value)) {
-        ?>
-        <a href="<?php echo wp_get_attachment_url( $value );?>" class="legal" target="_blank">LEGAL</a>
-        <?php
+        echo htmlspecialchars_decode($value);
       }
 
       ?>

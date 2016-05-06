@@ -29,10 +29,10 @@
       Price
     </td>
     <td class="charges">
-      Common Charges
+      Est. common charges
     </td>
     <td class="taxes">
-      Taxes
+      Est. RE taxes
     </td>
     <td class="download">
       Floor Plan
@@ -66,13 +66,13 @@ function makeList($a) {
       <?php echo numberer($a['exterior-square-feet']);?>
     </td>
     <td class="price">
-      <?php echo numberer($a['price'], '$');?>
+      <?php echo numberer($a['price'], '');?>
     </td>
     <td class="charges">
-      <?php echo numberer($a['common-charges'], '$');?>
+      <?php echo numberer($a['common-charges'], '');?>
     </td>
     <td class="taxes">
-      <?php echo numberer($a['taxes'], '$');?>
+      <?php echo numberer($a['taxes'], '');?>
     </td>
     <td class="download">
       <?php

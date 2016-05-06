@@ -118,10 +118,12 @@ if(!empty($headerGal)) {
 <body id="top">
 
 <div id="css-checker"></div>
+<div id="head-wrap">
 <header>
 
 <?php include 'module-navigation.php';?>
 </header>
+</div>
 <div id="app_wrap">
 
   <div id="ajax-catcher">

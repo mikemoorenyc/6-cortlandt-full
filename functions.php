@@ -57,7 +57,7 @@ function content_cleaner($content) {
 
 
 //ADD FOOTER COPY SETTING
-//add_filter('admin_init', 'footer_copy_setting');
+add_filter('admin_init', 'footer_copy_setting');
 
 function footer_copy_setting()
 {
@@ -86,6 +86,7 @@ include 'press-section/main-include.php';
 
 // include 'map-component/main-include.php';
 include 'login-styling.php';
-include 'map-upload.php';
+//include 'map-upload.php';
 //include 'file-repo/main-include.php';
+
 ?>

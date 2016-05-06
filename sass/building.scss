@@ -137,15 +137,25 @@
 }
 #amen-list {
   letter-spacing: -4px;
+  width: 300px;
+  margin: 0 auto;
+  @media($dt) {
+    width: 875px;
+    position: relative;
+    left: -12.5px;
+  }
   > li {
     display: inline-block;
     letter-spacing: normal;
     width: 49.5%;
     vertical-align: top;
-    padding:45px 10px 0 10px;
+    padding:45px 10px 0 0px;
+    &:nth-child(even) {
+      padding:45px 0 0 10px;
+    }
     @media($dt) {
       width:33%;
-      padding: 30px 25px 30px 0;
+      padding: 30px 12.5px 30px !important;
     }
     h1 {
       position:relative;
@@ -170,7 +180,7 @@
       }
     }
     a.read-more {
-      
+
       margin-top: 15px;
       @media($dt) {
         margin-top: 30px;
@@ -184,7 +194,13 @@
     .copy-box {
       overflow:hidden;
       transition: all .25s;
-
+      height: 75px;
+      @media($dt) {
+        height:88px;
+      }
+      &.all-content {
+        height: auto !important;
+      }
       &.__opened {
         max-height:none !important;
         .bottom {
